@@ -1,7 +1,7 @@
 const route = require('express').Router();
-const userController = require('../controllers/userController');
-require('../../database/connection');
 
-route.get('/', userController.index);
+route.get('/', (req, res)=>{
+    res.render('home');
+});
 
-module.exports = route
+module.exports = route;
