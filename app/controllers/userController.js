@@ -3,5 +3,5 @@ module.exports.index = (req,res)=>{
 }
 
 module.exports.login = (req, res)=>{
-    
+
 }
