@@ -1,7 +1,6 @@
 const route = require('express').Router();
+const userController = require('../controllers/userController');
 
-route.get('/', (req,res)=>{
-    res.send("working");
-})
+route.get('/', userController.index);
 
 module.exports = route
