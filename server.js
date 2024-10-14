@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(cors());
 app.use(express.static('public'))
 app.use(express.json({limit : '10mb'}));
-app.use('/', require('./app/routes/route'));
+app.use('/', require('./app/routes/web'));
 
 app.listen(PORT, ()=>{
     console.log(`server running on http://localhost:${PORT}`);
