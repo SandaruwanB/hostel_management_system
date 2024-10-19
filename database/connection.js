@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const data = require('../config');
 
 
-module.exports.connection = new Sequelize(
+module.exports.sequalize = new Sequelize(
     data.database,
     data.db_user,
     data.db_user_pw,
