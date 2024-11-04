@@ -15,9 +15,9 @@ app.use(express.static('public'))
 app.use(express.json({limit : '10mb'}));
 app.use('/', require('./app/routes/web'));
 
-sequalize.sync({force : true}).then(()=>{
-    console.log("Cynced");
-})
+// sequalize.sync({force : true}).then(()=>{
+//     console.log("Cynced");
+// })
 
 app.listen(PORT, ()=>{
     console.log(`server running on http://localhost:${PORT}`);

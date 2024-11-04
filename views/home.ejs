@@ -3,11 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/styles.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>HMS - Login</title>
+    <title>Stay Grid | Login</title>
+    <%- include('components/externalImports') %>
 </head>
 <body>
-    <h1 class="text-yellow-500">Login Page</h1>
+    <div class="flex min-h-screen justify-center items-center">
+        <div class="grid md:grid-cols-2">
+            <div class="p-10 bg-blue-800 flex justify-center flex-col items-center h-100">
+                <h1 class="text-white text-3xl font-bold">Welcome back !</h1>
+                <h3 class="text-gray-100">Please enter your credentials to login</h3>
+                <div class="mt-10 mb-5">
+                    <img src="/images/loginanimated.png" alt="animatedlogin" >
+                </div>
+            </div>
+            <div class="p-10 border border-blue-800">
+                <div class="flex justify-center items-center flex-col h-100">
+                    <img src="/images/logo.png" width="80" alt="logo">
+                    <h1 class="text-3xl font-bold text-blue-950">Login</h1>
+                    <form action="" class="mt-10 w-full">
+                        <div class="relative">
+                            <input type="text" id="uname" class="w-full border border-blue-950 p-2 focus:outline-none rounded-md" placeholder="Username">
+                            <label for="uname">Username or email</label>
+                        </div>
+                        <div class="relative mt-4">
+                            <input type="password" id="password" class="w-full border border-blue-950 p-2 focus:outline-none rounded-md" placeholder="password">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="w-full flex justify-center mt-10">
+                            <button class="border-2 border-blue-800 bg-blue-800 px-8 py-2 text-white font-bold rounded-md hover:bg-transparent hover:text-blue-800 transition duration-300 ease-in-out">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mt-8 text-left">
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
