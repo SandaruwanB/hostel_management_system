@@ -18,15 +18,20 @@
             </div>
             <div class="p-10 border border-blue-800">
                 <div class="flex justify-center items-center flex-col h-100">
-                    <img src="/images/logo.png" width="80" alt="logo">
+                    <img src="/images/logo.png" width="90" alt="logo">
                     <h1 class="text-3xl font-bold text-blue-950">Login</h1>
-                    <form action="" class="mt-10 w-full">
-                        <div class="relative">
-                            <input type="text" id="uname" class="w-full border border-blue-950 p-2 focus:outline-none rounded-md" placeholder="Username">
+                    <form action="/login" method="post" id="loginForm" class="mt-10 w-full">
+                        <div class="relative hidden" id="errorSpace">
+                            <div class="bg-red-50 w-full p-3 border border-red-300 rounded-md">
+                                <span class="text-red-700" id="errorText">All fields are required</span>
+                            </div>
+                        </div>
+                        <div class="relative mt-2">
+                            <input type="text" id="uname" onchange="removeAlert()" class="w-full border border-blue-950 p-2 focus:outline-none rounded-md" placeholder="Username">
                             <label for="uname">Username or email</label>
                         </div>
                         <div class="relative mt-4">
-                            <input type="password" id="password" class="w-full border border-blue-950 p-2 focus:outline-none rounded-md" placeholder="password">
+                            <input type="password" id="password" onchange="removeAlert()" class="w-full border border-blue-950 p-2 focus:outline-none rounded-md" placeholder="password">
                             <label for="password">Password</label>
                         </div>
                         <div class="w-full flex justify-center mt-10">
@@ -40,5 +45,6 @@
             </div>
         </div>
     </div>
+    <%- include('components/bottomIncludes.ejs') %>
 </body>
 </html>
