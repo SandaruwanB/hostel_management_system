@@ -8,6 +8,8 @@ const data = {
     'db_user' : process.env.DB_USER,
     'db_user_pw' : process.env.DB_USER_PW,
     'database' : process.env.DATABASE,
+    'app_key' : process.env.APP_KEY,
+    'app_port' : process.env.PORT
 };
 
 module.exports = data;

@@ -2,6 +2,9 @@ const { sequalize } = require('../connection');
 
 require('../../app/models/roles');
 require('../../app/models/users');
+require('../../app/models/faculties');
+require('../../app/models/students');
+require('../../app/models/payments');
 
 module.exports.migrate = ()=>{
     sequalize.sync({force : true}).then(()=>{

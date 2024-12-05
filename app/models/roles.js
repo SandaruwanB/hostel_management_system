@@ -14,4 +14,6 @@ const roles = sequalize.define('user_roles', {
     }
 });
 
+
+
 module.exports = roles;
