@@ -16,7 +16,9 @@ function signIn(e){
             dataType: 'json',
             success: function (response) {
                 if(response.result == "success"){
-        
+                    console.log(response.user);
+                    $("#errorText").text(response.result);
+                    $("#errorSpace").removeClass("hidden");
                 }
                 else{
                     $("#errorText").text(response.result);

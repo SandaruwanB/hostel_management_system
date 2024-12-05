@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const users = require('../models/users');
+const roles = require('../models/roles');
 const { where, Op } = require('sequelize');
 
 
@@ -12,12 +13,19 @@ module.exports.signIn = async (req, res)=>{
                 {userName : username},
                 {email : username}
             ]
-        }
+        },
+        include: [
+            {
+                model: roles,
+                as: 'role',
+                attributes: ['name'],
+            },
+        ],
     }).then((user)=>{
         if (user){
             bcrypt.compare(password, user.password).then((result)=>{
                 if(result){
-                    res.json({result : "success"});
+                    res.json({result : "success", user });
                 }else{
                     res.json({result : "Incorrect password"});
                 }

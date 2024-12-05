@@ -29,5 +29,9 @@ const users = sequalize.define('users', {
 });
 
 roles.hasOne(users, { foreignKey : 'roleId' });
+users.belongsTo(roles, {
+    foreignKey: 'roleId',
+    as: 'role',
+});
 
 module.exports = users;
