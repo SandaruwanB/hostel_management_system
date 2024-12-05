@@ -22,6 +22,7 @@ app.use(session({
     cookie : {secure : true}
 }));
 
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(cors());
 app.use(express.static('public'))
