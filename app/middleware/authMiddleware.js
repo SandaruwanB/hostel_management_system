@@ -4,7 +4,6 @@ const roles = require('../models/roles');
 const data = require('../../config');
 
 module.exports.authCheck = async (req, res, next)=>{
-    console.log(req.cookies);
     try{
         const token = req.cookies.session;
         const uid = jwt.verify(token, data.app_key);
