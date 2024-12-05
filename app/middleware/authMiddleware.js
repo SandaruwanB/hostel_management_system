@@ -19,8 +19,14 @@ module.exports.authCheck = async (req, res, next)=>{
                 },
             ],
         });
-        req.user = user;
-        next();
+        if(user){
+            req.user = user;
+            next();
+        }
+        else{
+            res.clearCookie("session");
+            return res.redirect('/');
+        }
     }
     catch(err){
         res.clearCookie("session");
@@ -45,11 +51,17 @@ module.exports.isAuthenticated = async (req, res, next)=>{
             ],
         }); 
 
-        if (user.role.name == "student"){
-            return res.redirect('/student/dashboard');
+        if (user){
+            if (user.role.name == "student"){
+                return res.redirect('/student/dashboard');
+            }
+            else{
+                return res.redirect('/user/dashboard');
+            }
         }
         else{
-            return res.redirect('/user/dashboard');
+            res.clearCookie("session");
+            return res.redirect('/');
         }
     }
     catch(err){
