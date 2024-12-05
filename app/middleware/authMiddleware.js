@@ -20,11 +20,39 @@ module.exports.authCheck = async (req, res, next)=>{
             ],
         });
         req.user = user;
-        console.log(user);
         next();
     }
     catch(err){
         res.clearCookie("session");
         return res.redirect('/');
+    }
+}
+
+module.exports.isAuthenticated = async (req, res, next)=>{
+    try{
+        const token = req.cookies.session;
+        const uid = jwt.verify(token, data.app_key);
+
+        const user = await users.findOne({
+            where : {
+                id : uid
+            },
+            include: [
+                {
+                    model: roles,
+                    as: 'role',
+                },
+            ],
+        }); 
+
+        if (user.role.name == "student"){
+            return res.redirect('/student/dashboard');
+        }
+        else{
+            return res.redirect('/user/dashboard');
+        }
+    }
+    catch(err){
+        next();
     }
 }
