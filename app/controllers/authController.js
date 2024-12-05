@@ -18,14 +18,17 @@ module.exports.signIn = async (req, res)=>{
             {
                 model: roles,
                 as: 'role',
-                attributes: ['name'],
             },
         ],
-    }).then((user)=>{
-        if (user){
-            bcrypt.compare(password, user.password).then((result)=>{
+    }).then((userData)=>{
+        if (userData){
+            bcrypt.compare(password, userData.password).then((result)=>{
                 if(result){
-                    res.json({result : "success", user });
+                    const user = {
+                        'name' : userData.userName,
+                        'role' : userData.role
+                    }
+                    res.json({result : "success", user});
                 }else{
                     res.json({result : "Incorrect password"});
                 }
