@@ -33,6 +33,6 @@ function signIn(e){
 
 
 
-function removeAlert(idName){
-    $(`${idName}`).addClass("hidden");
+function removeLoginAlert(){
+    $(`#errorSpace`).addClass("hidden");
 }
