@@ -1,9 +1,35 @@
-<nav class="w-screen p-5 bg-gray-900">
+<nav class="w-screen p-5 bg-gray-900 flex justify-between">
     <span class="text-white text-4xl top-5 left-4 cursor-pointer" onclick="openSidebar()">
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
         </svg>          
     </span>
+    <div class="text-white">
+        <div class="flex items-center duration-300 cursor-pointer text-white md:pr-5" onclick="userDropdown()">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M9.586 2.586A2 2 0 0 1 11 2h2a2 2 0 0 1 2 2v.089l.473.196.063-.063a2.002 2.002 0 0 1 2.828 0l1.414 1.414a2 2 0 0 1 0 2.827l-.063.064.196.473H20a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-.089l-.196.473.063.063a2.002 2.002 0 0 1 0 2.828l-1.414 1.414a2 2 0 0 1-2.828 0l-.063-.063-.473.196V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.089l-.473-.196-.063.063a2.002 2.002 0 0 1-2.828 0l-1.414-1.414a2 2 0 0 1 0-2.827l.063-.064L4.089 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h.09l.195-.473-.063-.063a2 2 0 0 1 0-2.828l1.414-1.414a2 2 0 0 1 2.827 0l.064.063L9 4.089V4a2 2 0 0 1 .586-1.414ZM8 12a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z" clip-rule="evenodd"/>
+            </svg>              
+            <div class="flex justify-between w-full items-center">
+                <span class="text-[15px] ml-4 text-gray-200 font-bold"><%= user.userName %></span>
+                <span class="text-sm rotate-180" id="loginArrow">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                    </svg>                      
+                </span>
+            </div>
+        </div>
+        <div class="absolute overflow-hidden text-center text-sm mt-2 text-gray-200 font-bold bg-blue-800 rounded-md p-1" id="userMenu">
+            <h1 class="cursor-pointer p-2 hover:bg-blue-500 rounded-md mt-1 mb-1">
+                Account settings
+            </h1>
+            <hr>
+            <form action="/signout" class="w-full" method="post">
+                <button type="submit" class="w-full cursor-pointer p-2 hover:bg-blue-500 rounded-md mt-2">
+                    Log out
+                </button>
+            </form>
+        </div>
+    </div>
 </nav>
 <div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900 hidden md:inline-block">
     <div class="relative text-gray-100 text-xl">
