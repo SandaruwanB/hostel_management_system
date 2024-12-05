@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt');
+const data = require('../../config');
 const users = require('../models/users');
 const roles = require('../models/roles');
 const { where, Op } = require('sequelize');
-
+const jwt = require('jsonwebtoken');
 
 module.exports.signIn = async (req, res)=>{
     const { username, password } = req.body;
@@ -27,7 +28,9 @@ module.exports.signIn = async (req, res)=>{
                     const user = {
                         'name' : userData.userName,
                         'role' : userData.role
-                    }
+                    };
+                    const token = jwt.sign(userData.id, data.app_key);
+                    res.cookie("session", token);
                     res.json({result : "success", user});
                 }else{
                     res.json({result : "Incorrect password"});
