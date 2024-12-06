@@ -36,8 +36,7 @@ function signIn(e){
     }
 }
 
-
-
 function removeLoginAlert(){
     $(`#errorSpace`).addClass("hidden");
 }
+
