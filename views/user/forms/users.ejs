@@ -7,7 +7,7 @@
     <%- include('../../components/externalImports') %>
 </head>
 <body>
-    <div class="max-w-screen-xl mx-auto">
+    <div class="max-w-screen-xl mx-auto px-4 md:px-1">
         <div class="mt-10 flex items-center relative">
             <a href="/user/users" class="absolute left-0">
                 <svg class="w-10 h-10 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -20,7 +20,7 @@
             <p class="text-gray-700">Account details</p>
             <hr class="bg-black h-[2px] mb-8"/>
             <form action="" class="w-full">
-                <div class="grid grid-cols-2 gap-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="username" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="User name">
                         <label for="username">User name</label>
@@ -40,18 +40,18 @@
                 </div>
                 <p class="text-gray-700 mt-8">Password details</p>
                 <hr class="bg-black h-[2px] mb-8"/>
-                <div class="grid grid-cols-2 gap-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="email" id="email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email">
-                        <label for="email">Password</label>
+                        <input type="password" id="password" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email">
+                        <label for="password">Password</label>
                     </div>
                     <div class="w-full">
-                        <input type="email" id="email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email">
-                        <label for="email">Re-enter password</label>
+                        <input type="password" id="repassword" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email">
+                        <label for="repassword">Re-enter password</label>
                     </div>
                 </div>
                 <div class="mt-8">
-                    <button class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                    <button id="createUser" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
                 </div>
             </form>
         </div>
