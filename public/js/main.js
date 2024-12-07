@@ -66,6 +66,12 @@ $('#createUser').click(function (e) {
                 dataType: "json",
                 success: function (response) {
                     if (response.result == "success"){
+                        $('#username').val("");
+                        $('#email').val("");
+                        $('#role').val(1);
+                        $('#password').val("");
+                        $('#repassword').val("");
+
                         showAlert("Successfully created", "#0ee30e");
                     }
                     else{
