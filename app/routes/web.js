@@ -8,6 +8,7 @@ const route = require('express').Router();
 
 route.get('/user/dashboard', authCheck, dashboardController.index);
 route.get('/user/users', authCheck, userController.index);
+route.get('/user/users/add', authCheck, userController.getCreateView);
 
 // auth routes
 route.get('/', isAuthenticated, (req, res)=>{

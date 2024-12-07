@@ -19,7 +19,7 @@ module.exports.index = async (req, res)=>{
             ],
         });
     }
-    else if(req.user.role.name == "admin"){
+    else if(req.user.role.name == "manager"){
         allUsers = await users.findAll({
             where : {
                 id: {
@@ -41,6 +41,26 @@ module.exports.index = async (req, res)=>{
         allUsers = [];
     }
     res.render('user/users', {user : req.user, users : allUsers});
+}
+
+
+module.exports.getCreateView = async (req,res)=>{
+    let awailableRoles;
+    if (req.user.role.name == "admin"){
+        awailableRoles = await roles.findAll();
+    }
+    else if (req.user.role.name == "manager"){
+        awailableRoles = await roles.findAll({
+            where : {
+                name: "student"
+            }
+        })
+    }
+    else{
+        awailableRoles = []
+    }
+
+    res.render('user/forms/users', {'roles' : awailableRoles});
 }
 
 module.exports.create = (req, res)=>{
