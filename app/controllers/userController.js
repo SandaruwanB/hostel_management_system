@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const { Op, where } = require('sequelize');
 const users = require('../models/users');
 const roles = require('../models/roles');
@@ -63,8 +64,34 @@ module.exports.getCreateView = async (req,res)=>{
     res.render('user/forms/users', {'roles' : awailableRoles});
 }
 
-module.exports.create = (req, res)=>{
-
+module.exports.create = async (req, res)=>{
+    const {username,email,role,password} = req.body;
+    
+    await users.findOne({
+        where : {
+            [Op.or] : [
+                {userName : username},
+                {email : email}
+            ]
+        }
+    }).then((user)=>{
+        if(user){
+            res.json({result : "This user already exists"});
+        }
+        else{
+            bcrypt.hash(password,10, async function (err, hash){
+                await users.create({
+                'userName' : username,
+                'email' : email,
+                'password' : hash,
+                'status' : false,
+                'roleId' : role
+                }).then(()=>{
+                    res.json({result : "success"});
+                });
+            });
+        }
+    });
 }
 
 module.exports.update = (req, res)=>{

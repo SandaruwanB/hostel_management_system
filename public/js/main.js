@@ -42,8 +42,10 @@ function removeLoginAlert(){
 
 
 // user functions
+
 $('#createUser').click(function (e) { 
     e.preventDefault();
+
     const username = $('#username').val();
     const email = $('#email').val();
     const role = $('#role').val();
@@ -51,14 +53,37 @@ $('#createUser').click(function (e) {
     const repassword = $('#repassword').val();
 
     if (username && email && role && password && repassword){
-
+        if (password === repassword){
+            $.ajax({
+                type: "post",
+                url: "/user/users/add",
+                data: {
+                    username : username,
+                    email : email,
+                    role : role,
+                    password : password
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        showAlert("Successfully created", "#0ee30e");
+                    }
+                    else{
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        }
+        else{
+            showAlert("Passwords didn't match.", "#ff1100");
+        }
     }
     else{
-        showError("All fields are required", "#ff1100");
+        showAlert("All fields are required", "#ff1100");
     }
 });
 
-function showError(error, color){
+function showAlert(error, color){
     Toastify({
         text: `${error}`,
         duration: 3000,
