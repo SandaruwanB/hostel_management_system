@@ -12,14 +12,23 @@ const route = require('express').Router();
 
 
 route.get('/user/dashboard', authCheck, dashboardController.index);
+
 route.get('/user/users', authCheck, userController.index);
 route.get('/user/users/add', authCheck, userController.getCreateView);
-route.get('/user/students', authCheck, studentsController.index);
-route.get('/user/payments', authCheck, paymentsController.index);
-route.get('/user/maintainers', authCheck, maintainersController.index);
-route.get('/user/complaints', authCheck, complaintsController.index);
-route.get('/user/faculty', authCheck, facultyController.index);
 route.post('/user/users/add', authCheck, userController.create);
+
+route.get('/user/students', authCheck, studentsController.index);
+
+route.get('/user/payments', authCheck, paymentsController.index);
+
+route.get('/user/maintainers', authCheck, maintainersController.index);
+
+route.get('/user/complaints', authCheck, complaintsController.index);
+
+route.get('/user/faculty', authCheck, facultyController.index);
+route.get('/user/faculty/add', authCheck, facultyController.getCreateView);
+route.post('/user/faculty/add', authCheck, facultyController.create);
+
 
 
 // auth routes
