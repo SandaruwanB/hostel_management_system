@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Grid | Maintainers - add</title>
+    <%- include('../../components/externalImports') %>
+</head>
+<body>
+    <div class="max-w-screen-xl mx-auto px-4 md:px-1">
+        <div class="mt-10 flex items-center relative">
+            <a href="/user/payments" class="absolute left-0">
+                <svg class="w-10 h-10 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+                </svg>
+            </a>
+            <h1 class="pl-16 inline text-xl font-bold text-gray-700">Create Payment</h1>              
+        </div>
+        <div class="mt-14">
+            <p class="text-gray-700">Personal details</p>
+            <hr class="bg-black h-[2px] mb-8"/>
+            <form action="" class="w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="text" id="name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Faculty Name">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" id="location" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Location">
+                        <label for="location">Location</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="text" id="hod_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Name">
+                        <label for="hod_name">HOD Name</label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" id="hod_cantact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Contact">
+                        <label for="hod_cantact">HOD Contact</label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" id="hod_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Address">
+                        <label for="hod_address">HOD Address</label>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-5">User account details</p>
+                <hr class="bg-black h-[2px] mb-8"/>
+                <div class="mt-8">
+                    <button id="createFaculty" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

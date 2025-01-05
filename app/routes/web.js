@@ -18,12 +18,16 @@ route.get('/user/users/add', authCheck, userController.getCreateView);
 route.post('/user/users/add', authCheck, userController.create);
 
 route.get('/user/students', authCheck, studentsController.index);
+route.get('/user/students/add', authCheck, studentsController.getCreateView);
 
 route.get('/user/payments', authCheck, paymentsController.index);
+route.get('/user/payments/add', authCheck, paymentsController.getCreateView);
 
 route.get('/user/maintainers', authCheck, maintainersController.index);
+route.get('/user/maintainers/add', authCheck, maintainersController.getCreateView);
 
 route.get('/user/complaints', authCheck, complaintsController.index);
+route.get('/user/complaints/:id', authCheck, complaintsController.getReadView);
 
 route.get('/user/faculty', authCheck, facultyController.index);
 route.get('/user/faculty/add', authCheck, facultyController.getCreateView);
