@@ -23,25 +23,25 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Faculty Name">
-                        <label for="name">Name</label>
+                        <label for="name">Name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="location" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Location">
-                        <label for="location">Location</label>
+                        <label for="location">Location <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="hod_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Name">
-                        <label for="hod_name">HOD Name</label>
+                        <label for="hod_name">HOD Name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="hod_cantact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Contact">
-                        <label for="hod_cantact">HOD Contact</label>
+                        <label for="hod_cantact">HOD Contact <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="hod_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Address">
-                        <label for="hod_address">HOD Address</label>
+                        <label for="hod_address">HOD Address <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="mt-8">
@@ -50,5 +50,6 @@
             </form>
         </div>
     </div>
+    <%- include('../../components/bottomIncludes.ejs') %>
 </body>
 </html>

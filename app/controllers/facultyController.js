@@ -10,5 +10,24 @@ module.exports.getCreateView = (req,res)=>{
 }
 
 module.exports.create = async (req,res)=>{
-
+    await faculties.findOne({
+        where : {
+            name: req.body.name
+        }
+    }).then(async (faculty)=>{
+        if (faculty){
+            res.json({"result" : "This faculty already exists."})
+        }
+        else{
+            await faculties.create({
+                name : req.body.name,
+                location : req.body.location,
+                hod_name : req.body.hodName,
+                hod_cantact : req.body.hodContact,
+                hod_address : req.body.hodAddress
+            }).then(()=>{
+                res.json({"result" : "success"});
+            })
+        }
+    })
 }
