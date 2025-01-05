@@ -1,4 +1,6 @@
-module.exports.index = (req,res)=>{
+const complaints = require('../models/complaints');
+
+module.exports.index = async (req,res)=>{
     res.render('user/complaints', {user : req.user});
 }
 

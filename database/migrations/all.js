@@ -5,6 +5,7 @@ require('../../app/models/users');
 require('../../app/models/faculties');
 require('../../app/models/students');
 require('../../app/models/payments');
+require('../../app/models/complaints');
 
 module.exports.migrate = ()=>{
     sequalize.sync({force : true}).then(()=>{
