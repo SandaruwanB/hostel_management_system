@@ -1,7 +1,11 @@
 const faculties = require('../models/faculties');
 
 module.exports.index = async (req,res)=>{
-    const facultyList = await faculties.findAll(); 
+    const facultyList = await faculties.findAll({
+        order : [
+            ['id' , 'DESC']
+        ]
+    }); 
     res.render('user/faculty', {user : req.user, faculties : facultyList})
 }
 
