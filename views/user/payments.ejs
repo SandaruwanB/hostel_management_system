@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Grid | Payments</title>
+    <%- include('../components/externalImports') %>
+</head>
+<body class="min-h-screen">
+    <%- include('./components/navbar.ejs') %>
+    <div class="ml-0 md:ml-[300px] p-3">
+        <h1 class="text-2xl font-bold pl-5 pt-5">Payments</h1>
+        <div class="flex justify-between p-5 mt-7">
+            <div>
+                <a href="/user/payments/add" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Create</a>
+            </div>
+            <div>
+                <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
+            </div>
+        </div>
+        <div class="px-5">
+            <table class="w-full table-auto">
+                <thead class="bg-gray-400">
+                    <th class="text-left p-2">Name</th>
+                    <th class="text-left p-2">Location</th>
+                    <th class="text-center p-2">HOD Name</th>
+                    <th class="text-center p-2">HOD Contact</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%- include('../components/bottomIncludes.ejs') %>
+</body>
+</html>

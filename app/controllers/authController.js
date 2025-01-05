@@ -54,3 +54,8 @@ module.exports.forgotPassword = (req, res)=>{
 module.exports.resetPassword = (req, res)=>{
     
 }
+
+module.exports.signout = (req,res)=>{
+    res.clearCookie("session");
+    return res.redirect('/');
+}

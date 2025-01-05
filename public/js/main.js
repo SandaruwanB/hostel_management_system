@@ -36,8 +36,70 @@ function signIn(e){
     }
 }
 
-
-
 function removeLoginAlert(){
     $(`#errorSpace`).addClass("hidden");
+}
+
+
+// user functions
+
+$('#createUser').click(function (e) { 
+    e.preventDefault();
+
+    const username = $('#username').val();
+    const email = $('#email').val();
+    const role = $('#role').val();
+    const password = $('#password').val();
+    const repassword = $('#repassword').val();
+
+    if (username && email && role && password && repassword){
+        if (password === repassword){
+            $.ajax({
+                type: "post",
+                url: "/user/users/add",
+                data: {
+                    username : username,
+                    email : email,
+                    role : role,
+                    password : password
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        $('#username').val("");
+                        $('#email').val("");
+                        $('#role').val(1);
+                        $('#password').val("");
+                        $('#repassword').val("");
+
+                        showAlert("Successfully created", "#0ee30e");
+                    }
+                    else{
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        }
+        else{
+            showAlert("Passwords didn't match.", "#ff1100");
+        }
+    }
+    else{
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
+function showAlert(error, color){
+    Toastify({
+        text: `${error}`,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "center", 
+        stopOnFocus: true,
+        style: {
+            background: `${color}`,
+        },
+        onClick: function(){}
+    }).showToast();
 }
