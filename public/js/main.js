@@ -41,8 +41,8 @@ function removeLoginAlert(){
 }
 
 
-// user functions
-
+// USER
+// create user
 $('#createUser').click(function (e) { 
     e.preventDefault();
 
@@ -83,6 +83,50 @@ $('#createUser').click(function (e) {
         else{
             showAlert("Passwords didn't match.", "#ff1100");
         }
+    }
+    else{
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
+
+// FACULTY 
+// create faculty
+
+$('#createFaculty').click(function (e) { 
+    e.preventDefault();
+    const name = $('#name').val();
+    const location = $('#location').val();
+    const hodName = $('#hod_name').val();
+    const hodContact = $('#hod_cantact').val();
+    const hodAddress = $('#hod_address').val();
+
+    if (name && location && hodName && hodContact && hodAddress){
+        $.ajax({
+            type: "post",
+            url: "/user/faculty/add",
+            data: {
+                "name" : name,
+                "location" : location,
+                "hodName" : hodName,
+                "hodContact" : hodContact,
+                "hodAddress" : hodAddress
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    $('#name').val("");
+                    $('#location').val("");
+                    $('#hod_name').val("");
+                    $('#hod_cantact').val("");
+                    $('#hod_address').val("");
+                    showAlert("Successfully created", "#0ee30e");
+                }
+                else{
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
     }
     else{
         showAlert("All fields are required", "#ff1100");
