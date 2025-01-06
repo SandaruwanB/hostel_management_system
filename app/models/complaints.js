@@ -17,13 +17,13 @@ const complaints = sequalize.define('complaints', {
         type : DataTypes.TEXT,
         allowNull : false,
     },
-    staus : {
+    status : {
         type : DataTypes.BOOLEAN,
         default : false
     }
 })
 
-users.hasMany(complaints, {foreignKey : 'userId'});
+users.hasOne(complaints, {foreignKey : 'userId'});
 complaints.belongsTo(users, {
     foreignKey : 'userId',
     as : 'user',
