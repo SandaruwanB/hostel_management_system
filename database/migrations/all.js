@@ -6,6 +6,7 @@ require('../../app/models/faculties');
 require('../../app/models/students');
 require('../../app/models/payments');
 require('../../app/models/complaints');
+require('../../app/models/maintainers');
 
 module.exports.migrate = ()=>{
     sequalize.sync({force : true}).then(()=>{
