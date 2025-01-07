@@ -21,14 +21,36 @@
         <div class="px-5">
             <table class="w-full table-auto">
                 <thead class="bg-gray-400">
-                    <th class="text-left p-2">Name</th>
-                    <th class="text-left p-2">Location</th>
-                    <th class="text-center p-2">HOD Name</th>
-                    <th class="text-center p-2">HOD Contact</th>
+                    <th class="text-left p-2">Calling name</th>
+                    <th class="text-left p-2">Job role</th>
+                    <th class="text-center p-2">Contact</th>
+                    <th class="text-center p-2">Emergency contact</th>
+                    <th class="text-center p-2">Is working</th>
                     <th></th>
                 </thead>
                 <tbody>
-                    
+                    <% if (maintainers.length > 0){ %>
+                        <% for (const maintainer of maintainers){ %>
+                        <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                            <td class="text-left p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.callingName %></td>
+                            <td class="text-left p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.jobRole %></td>
+                            <td class="text-center p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.contact %></td>                            
+                            <td class="text-center p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.emergencyContact %></td>
+                            <td class="text-center p-2" onclick="console.log('<%= maintainer.id %>')">
+                                <% if (maintainer.workEndDate) { %>
+                                    <span>No</span>
+                                <% } else { %>
+                                    <span>Yes</span>
+                                <% } %>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-2">No maintainers to show <a href="/user/maintainers/add" class="text-blue-500 hover:underline">add maintainer?</a></td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
