@@ -28,29 +28,31 @@
                     <th class="text-center p-2">Role</th>
                     <th class="text-center p-2">Status</th>
                     <th class="text-center p-2">Created date</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <% if (users.length > 0) { %>
                         <% for (const user of users){ %>
                             <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
-                                <td class="text-left p-2"><%= user.userName %></td>
-                                <td class="text-left p-2"><%= user.email %></td>
-                                <td class="text-center p-2"><%= user.role.name %></td>
+                                <td class="text-left p-2" onclick="window.location.replace('/user/users/<%= user.id %>')"><%= user.userName %></td>
+                                <td class="text-left p-2" onclick="window.location.replace('/user/users/<%= user.id %>')"><%= user.email %></td>
+                                <td class="text-center p-2" onclick="window.location.replace('/user/users/<%= user.id %>')"><%= user.role.name %></td>
                                 <% 
                                     const dbDate = new Date(user.createdAt);
                                     const formattedDate = dbDate.toLocaleDateString();
                                 %>
                                 <% if (user.status == false){ %>
-                                    <td class="text-center p-2"><p class="text-red-500">Inactive</p></td>
+                                    <td class="text-center p-2" onclick="window.location.replace('/user/users/<%= user.id %>')"><p class="text-red-500">Inactive</p></td>
                                 <% }else{ %>
-                                    <td class="text-center p-2"><p class="text-green-500">Active</p></td>
+                                    <td class="text-center p-2" onclick="window.location.replace('/user/users/<%= user.id %>')"><p class="text-green-500">Active</p></td>
                                 <% } %>                                
-                                <td class="text-center p-2"><%= formattedDate %></td>
+                                <td class="text-center p-2" onclick="window.location.replace('/user/users/<%= user.id %>')"><%= formattedDate %></td>
+                                <td></td>
                             </tr>
                         <% } %>
                     <% } else { %>
                         <tr>
-                            <td colspan="5" class="text-center p-2">No users to show <a href="/user/users/add" class="text-blue-500 hover:underline">add user?</a></td>
+                            <td colspan="6" class="text-center p-2">No users to show <a href="/user/users/add" class="text-blue-500 hover:underline">add user?</a></td>
                         </tr>
                     <% } %>
                 </tbody>
