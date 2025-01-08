@@ -1,5 +1,13 @@
-module.exports.index = (req,res)=>{
-    res.render('user/maintainers', {user : req.user})
+const maintainers = require('../models/maintainers');
+
+module.exports.index = async (req,res)=>{
+    const maintainersList = await maintainers.findAll({
+        order : [
+            ['id', 'DESC']
+        ]
+    });
+
+    res.render('user/maintainers', {user : req.user, maintainers : maintainersList});
 }
 
 module.exports.getCreateView = (req,res)=>{

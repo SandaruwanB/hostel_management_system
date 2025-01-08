@@ -1,5 +1,8 @@
-module.exports.index = (req,res)=>{
-    res.render('user/students', {user : req.user});
+const students = require('../models/students');
+
+module.exports.index = async (req,res)=>{
+    const allStudents = await students.findAll();
+    res.render('user/students', {user : req.user, students : allStudents});
 }
 
 module.exports.getCreateView = (req,res)=>{

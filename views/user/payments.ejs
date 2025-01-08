@@ -21,14 +21,30 @@
         <div class="px-5">
             <table class="w-full table-auto">
                 <thead class="bg-gray-400">
-                    <th class="text-left p-2">Name</th>
-                    <th class="text-left p-2">Location</th>
-                    <th class="text-center p-2">HOD Name</th>
-                    <th class="text-center p-2">HOD Contact</th>
+                    <th class="text-left p-2">Student</th>
+                    <th class="text-left p-2">Student registration</th>
+                    <th class="text-center p-2">Payslip number</th>
+                    <th class="text-center p-2">Payment date</th>
+                    <th class="text-center p-2">Payment amount</th>
                     <th></th>
                 </thead>
                 <tbody>
-                    
+                    <% if (payments.length > 0){ %>
+                        <% for (const payment of payments){ %>
+                            <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                <td class="text-left p-2" onclick="console.log('<%= payment.id %>')"><%= payment.student.full_name %></td>
+                                <td class="text-left p-2" onclick="console.log('<%= payment.id %>')"><%= payment.student.registration_number %></td>
+                                <td class="text-center p-2" onclick="console.log('<%= payment.id %>')"><%= payment.payslipNumber %></td>                            
+                                <td class="text-center p-2" onclick="console.log('<%= payment.id %>')"><%= payment.paymentDate %></td>
+                                <td class="text-center p-2" onclick="console.log('<%= payment.id %>')"><%= payment.amount %></td>
+                                <td></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-2">No payments to show <a href="/user/payments/add" class="text-blue-500 hover:underline">create payment?</a></td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>

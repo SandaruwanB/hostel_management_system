@@ -20,14 +20,35 @@
         <div class="px-5">
             <table class="w-full table-auto">
                 <thead class="bg-gray-400">
-                    <th class="text-left p-2">Name</th>
-                    <th class="text-left p-2">Location</th>
-                    <th class="text-center p-2">HOD Name</th>
-                    <th class="text-center p-2">HOD Contact</th>
+                    <th class="text-left p-2">User</th>
+                    <th class="text-left p-2">Email</th>
+                    <th class="text-left p-2">Subject</th>
+                    <th class="text-left p-2">Message</th>
                     <th></th>
                 </thead>
                 <tbody>
-                    
+                    <% if (unreadComplaints.length <= 0 && readComplaints.length <= 0){ %>
+                        <tr>
+                            <td colspan="4" class="text-center p-2">No complaints to show</td>
+                        </tr>
+                    <% } else { %>
+                        <% for (const unreadComplaint of unreadComplaints){%>
+                            <tr class="bg-gray-300 hover:bg-gray-100 cursor-pointer">
+                                <td class="text-left p-2"><%= unreadComplaint.user.userName %></td>
+                                <td class="text-left p-2"><%= unreadComplaint.user.email %></td>
+                                <td class="text-left p-2"><%= unreadComplaint.subject %></td>
+                                <td class="text-left p-2"><%= unreadComplaint.message %></td>
+                            </tr>
+                        <% } %>
+                        <% for (const readComplaint of readComplaints){%>
+                            <tr class="bg-gray-200 hover:bg-gray-100 cursor-pointer">
+                                <td class="text-left p-2"><%= readComplaint.user.userName %></td>
+                                <td class="text-left p-2"><%= readComplaint.user.email %></td>
+                                <td class="text-left p-2"><%= readComplaint.subject %></td>
+                                <td class="text-left p-2"><%= readComplaint.message %></td>
+                            </tr>
+                        <% } %>
+                    <% } %>
                 </tbody>
             </table>
         </div>

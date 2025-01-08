@@ -22,13 +22,29 @@
             <table class="w-full table-auto">
                 <thead class="bg-gray-400">
                     <th class="text-left p-2">Name</th>
-                    <th class="text-left p-2">Location</th>
-                    <th class="text-center p-2">HOD Name</th>
-                    <th class="text-center p-2">HOD Contact</th>
+                    <th class="text-left p-2">Registration no</th>
+                    <th class="text-center p-2">Email</th>
+                    <th class="text-center p-2">Contact</th>
+                    <th class="text-center p-2">Emergency contact</th>
                     <th></th>
                 </thead>
                 <tbody>
-                    
+                    <% if (students.length > 0) { %>
+                        <% for (student of students){ %>
+                            <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                <td class="text-left p-2" onclick="console.log('<%= student.id %>')"><%= student.full_name %></td>
+                                <td class="text-left p-2" onclick="console.log('<%= student.id %>')"><%= student.registration_number %></td>
+                                <td class="text-center p-2" onclick="console.log('<%= student.id %>')"><%= student.email %></td>                            
+                                <td class="text-center p-2" onclick="console.log('<%= student.id %>')"><%= student.contact %></td>
+                                <td class="text-center p-2" onclick="console.log('<%= student.id %>')"><%= student.guardians_contact %></td>
+                                <td></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-2">No students to show <a href="/user/students/add" class="text-blue-500 hover:underline">add student?</a></td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
