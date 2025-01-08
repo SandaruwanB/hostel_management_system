@@ -16,38 +16,80 @@
             </a>
             <h1 class="pl-16 inline text-xl font-bold text-gray-700">Add Student</h1>              
         </div>
-        <div class="mt-14">
+        <div class="mt-14 mb-14">
             <p class="text-gray-700">Personal details</p>
             <hr class="bg-black h-[2px] mb-8"/>
             <form action="" class="w-full">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="text" id="name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Faculty Name">
-                        <label for="name">Name</label>
+                        <input type="text" id="full_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Full name">
+                        <label for="full_name">Full name</label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="location" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Location">
-                        <label for="location">Location</label>
+                        <input type="text" id="registration_number" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Registration number">
+                        <label for="registration_number">Registration number</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-1 gap-5">
+                    <div class="w-full">
+                        <input type="text" id="permanant_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Permanant address">
+                        <label for="permanant_address">Permanant address</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-1 gap-5">
+                    <div class="w-full">
+                        <input type="text" id="temporary_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Temporary address">
+                        <label for="temporary_address">Temporary address</label>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="text" id="hod_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Name">
-                        <label for="hod_name">HOD Name</label>
+                        <input type="text" id="contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Contact">
+                        <label for="contact">Contact</label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="hod_cantact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Contact">
-                        <label for="hod_cantact">HOD Contact</label>
-                    </div>
-                    <div class="w-full">
-                        <input type="text" id="hod_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Address">
-                        <label for="hod_address">HOD Address</label>
+                        <input type="email" id="email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email address">
+                        <label for="email">Email address</label>
                     </div>
                 </div>
                 <p class="text-gray-700 mt-5">User account details</p>
                 <hr class="bg-black h-[2px] mb-8"/>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <select type="text" id="account" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Associate account">
+                            <option value="">Select account</option>
+                        </select>
+                        <label for="account">Associate account</label>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-5">Faculty details</p>
+                <hr class="bg-black h-[2px] mb-8"/>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <select type="text" id="faculty" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Student faculty">
+                            <option value="">Select faculty</option>
+                        </select>
+                        <label for="faculty">Student faculty</label>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-5">Guardian details</p>
+                <hr class="bg-black h-[2px] mb-8"/>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="text" id="guardians_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians name">
+                        <label for="guardians_name">Guardians name</label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" id="guardians_contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians contact">
+                        <label for="guardians_contact">Guardians contact</label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" id="guardians_email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians email">
+                        <label for="guardians_email">Guardians email</label>
+                    </div>
+                </div>
                 <div class="mt-8">
-                    <button id="createFaculty" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                    <button id="createStudent" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
                 </div>
             </form>
         </div>
