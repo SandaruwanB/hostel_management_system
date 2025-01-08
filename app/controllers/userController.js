@@ -94,6 +94,38 @@ module.exports.create = async (req, res)=>{
     });
 }
 
+module.exports.getEditView = async (req,res)=>{
+    const userId = req.params.id;
+    let awailableRoles;
+
+    const userData = await users.findOne({
+        where : {
+            'id' : userId
+        },
+        include : [
+            {
+                model : roles,
+                as : 'role'
+            }
+        ]
+    });
+
+    if (req.user.role.name == "admin"){
+        awailableRoles = await roles.findAll();
+    }
+    else if (req.user.role.name == "manager"){
+        awailableRoles = await roles.findAll({
+            where : {
+                name: "student"
+            }
+        })
+    }
+    else{
+        awailableRoles = []
+    }
+    res.render('user/forms/users', {'roles' : awailableRoles, user : userData});
+}
+
 module.exports.update = (req, res)=>{
 
 }
