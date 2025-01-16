@@ -56,7 +56,7 @@ module.exports.create = async (req, res)=>{
                         guardians_name : guardians_name,
                         guardians_contact : guardians_contact,
                         guardians_email : guardians_email,
-                        userAccountId : account,
+                        userAccountId : account ? account : null,
                         facultyId : faculty
                     }).then(()=>{
                         res.json({result : "success"});
@@ -65,4 +65,40 @@ module.exports.create = async (req, res)=>{
             });
         }
     });
+}
+
+module.exports.getUpdateView = async (req, res)=>{
+    const reqId = req.params.id;
+
+    const studentDetails = await students.findOne({
+        where : {
+            id : reqId
+        },
+        include : [
+            {
+                model : users,
+                as : 'userAccount'
+            },
+            {
+                model : faculties,
+                as : 'faculty',
+            }
+        ]
+    });
+    const userRole = await roles.findOne({
+        where : {
+            name : "student"
+        }
+    });
+    const userAccounts = await users.findAll({
+        where : {
+            roleId : userRole.id
+        },
+        order : [
+            ['id', 'DESC']
+        ]
+    });
+    const facultyList = await faculties.findAll();
+
+    res.render('user/forms/students', {faculties : facultyList, users : userAccounts, student : studentDetails});
 }

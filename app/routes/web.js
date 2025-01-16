@@ -11,6 +11,7 @@ const { authCheck, isAuthenticated } = require('../middleware/authMiddleware');
 const route = require('express').Router();
 
 
+// admin and manager routes
 route.get('/user/dashboard', authCheck, dashboardController.index);
 
 route.get('/user/users', authCheck, userController.index);
@@ -20,6 +21,7 @@ route.post('/user/users/add', authCheck, userController.create);
 
 route.get('/user/students', authCheck, studentsController.index);
 route.get('/user/students/add', authCheck, studentsController.getCreateView);
+route.get('/user/students/:id', authCheck, studentsController.getUpdateView);
 route.post('/user/students/add', authCheck, studentsController.create);
 
 route.get('/user/payments', authCheck, paymentsController.index);
