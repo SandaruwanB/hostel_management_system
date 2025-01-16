@@ -133,6 +133,30 @@ $('#createFaculty').click(function (e) {
     }
 });
 
+
+// MAINTAINERS
+// create maintainer
+$('#createMaintainer').click(function (e) { 
+    e.preventDefault();
+    
+    const callingName = $('#callingName').val();
+    const fullName = $("#fullName").val();
+    const nic = $("#nic").val();
+    const jobRole = $("#jobRole").val();
+    const workStartedDate = $("#workStartedDate").val();
+    const workEndDate = $("#workEndDate").val();
+    const address = $("#address").val();
+    const contact = $("#contact").val();
+    const emergencyContact = $("#emergencyContact").val();
+
+    if (nic && callingName && fullName && jobRole && contact && emergencyContact){
+
+    }
+    else{
+        showAlert("You missed some required fields", "#ff1100");
+    }
+});
+
 function showAlert(error, color){
     Toastify({
         text: `${error}`,

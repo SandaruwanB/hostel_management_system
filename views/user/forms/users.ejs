@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stay Grid | Users - add</title>
+    <title>Stay Grid | Users - <%= typeof user !== 'undefined' && user ? user.userName : 'add' %></title>
     <%- include('../../components/externalImports') %>
 </head>
 <body>

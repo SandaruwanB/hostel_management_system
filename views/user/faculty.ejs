@@ -31,10 +31,10 @@
                     <% if (faculties.length > 0) { %>
                         <% for (const faculty of faculties){ %>
                             <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
-                                <td class="text-left p-2" onclick="console.log('<%= faculty.id %>')"><%= faculty.name %></td>
-                                <td class="text-left p-2" onclick="console.log('<%= faculty.id %>')"><%= faculty.location %></td>
-                                <td class="text-center p-2" onclick="console.log('<%= faculty.id %>')"><%= faculty.hod_name %></td>                            
-                                <td class="text-center p-2" onclick="console.log('<%= faculty.id %>')"><%= faculty.hod_cantact %></td>
+                                <td class="text-left p-2" onclick="window.location.replace('/user/faculty/<%= faculty.id %>')"><%= faculty.name %></td>
+                                <td class="text-left p-2" onclick="window.location.replace('/user/faculty/<%= faculty.id %>')"><%= faculty.location %></td>
+                                <td class="text-center p-2" onclick="window.location.replace('/user/faculty/<%= faculty.id %>')"><%= faculty.hod_name %></td>                            
+                                <td class="text-center p-2" onclick="window.location.replace('/user/faculty/<%= faculty.id %>')"><%= faculty.hod_cantact %></td>
                                 <td class="text-center">
                                     <button class="text-red-400 hover:text-red-600" onclick="console.log('<%= faculty.id %>')">
                                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

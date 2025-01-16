@@ -12,6 +12,9 @@ const maintainers = sequalize.define('maintainers', {
     callingName : {
         type : DataTypes.STRING
     },
+    nic : {
+        type : DataTypes.STRING
+    },
     fullName : {
         type : DataTypes.STRING
     },
