@@ -23,17 +23,21 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="callingName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Calling name">
-                        <label for="callingName">Calling name</label>
+                        <label for="callingName">Calling name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="fullName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Full name">
-                        <label for="fullName">Full name</label>
+                        <label for="fullName">Full name <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" id="nic" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="NIC">
+                        <label for="nic">NIC <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="jobRole" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Job role">
-                        <label for="jobRole">Job role</label>
+                        <label for="jobRole">Job role <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="date" id="workStartedDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Work started date">
@@ -49,11 +53,11 @@
                     </div>
                     <div class="w-full">
                         <input type="text" id="contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Contact">
-                        <label for="contact">Contact</label>
+                        <label for="contact">Contact <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="emergencyContact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Emergency contact">
-                        <label for="emergencyContact">Emergency contact</label>
+                        <label for="emergencyContact">Emergency contact <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="mt-8">
@@ -62,5 +66,6 @@
             </form>
         </div>
     </div>
+    <%- include('../../components/bottomIncludes.ejs') %>
 </body>
 </html>
