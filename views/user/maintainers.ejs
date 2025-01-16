@@ -32,11 +32,11 @@
                     <% if (maintainers.length > 0){ %>
                         <% for (const maintainer of maintainers){ %>
                         <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
-                            <td class="text-left p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.callingName %></td>
-                            <td class="text-left p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.jobRole %></td>
-                            <td class="text-center p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.contact %></td>                            
-                            <td class="text-center p-2" onclick="console.log('<%= maintainer.id %>')"><%= maintainer.emergencyContact %></td>
-                            <td class="text-center p-2" onclick="console.log('<%= maintainer.id %>')">
+                            <td class="text-left p-2" onclick="window.location.replace('/user/maintainers/<%= maintainer.id %>')"><%= maintainer.callingName %></td>
+                            <td class="text-left p-2" onclick="window.location.replace('/user/maintainers/<%= maintainer.id %>')"><%= maintainer.jobRole %></td>
+                            <td class="text-center p-2" onclick="window.location.replace('/user/maintainers/<%= maintainer.id %>')"><%= maintainer.contact %></td>                            
+                            <td class="text-center p-2" onclick="window.location.replace('/user/maintainers/<%= maintainer.id %>')"><%= maintainer.emergencyContact %></td>
+                            <td class="text-center p-2" onclick="window.location.replace('/user/maintainers/<%= maintainer.id %>')">
                                 <% if (maintainer.workEndDate) { %>
                                     <span>No</span>
                                 <% } else { %>

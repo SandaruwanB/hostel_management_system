@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stay Grid | Maintainers - add</title>
+    <title>Stay Grid | Maintainers - <%= typeof maintainer !== 'undefined' && maintainer ? maintainer.callingName : 'add' %></title>
     <%- include('../../components/externalImports') %>
 </head>
 <body>
@@ -14,7 +14,9 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
                 </svg>
             </a>
-            <h1 class="pl-16 inline text-xl font-bold text-gray-700">Add Maintainer</h1>              
+            <h1 class="pl-16 inline text-xl font-bold text-gray-700">
+                <%= typeof maintainer !== 'undefined' && maintainer ? maintainer.callingName : 'Add Maintainer' %>
+            </h1>              
         </div>
         <div class="mt-14">
             <p class="text-gray-700">Personal details</p>
@@ -22,46 +24,50 @@
             <form action="" class="w-full">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="text" id="callingName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Calling name">
+                        <input type="text" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.callingName : '' %>" id="callingName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Calling name">
                         <label for="callingName">Calling name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="fullName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Full name">
+                        <input type="text" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.fullName : '' %>" id="fullName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Full name">
                         <label for="fullName">Full name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="nic" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="NIC">
+                        <input type="text" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.nic : '' %>" id="nic" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="NIC">
                         <label for="nic">NIC <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="text" id="jobRole" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Job role">
+                        <input type="text" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.jobRole : '' %>" id="jobRole" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Job role">
                         <label for="jobRole">Job role <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
-                        <input type="date" id="workStartedDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Work started date">
+                        <input type="date" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.workStartedDate : '' %>" id="workStartedDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Work started date">
                         <label for="workStartedDate">Work started date</label>
                     </div>
                     <div class="w-full">
-                        <input type="date" id="workEndDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Work ended date">
+                        <input type="date" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.workEndDate : '' %>" id="workEndDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Work ended date">
                         <label for="workEndDate">Work ended date</label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Address">
+                        <input type="text" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.address : '' %>" id="address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Address">
                         <label for="address">Address</label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Contact">
+                        <input type="text" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.contact : '' %>" id="contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Contact">
                         <label for="contact">Contact <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="emergencyContact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Emergency contact">
+                        <input type="text" value="<%= typeof maintainer !== 'undefined' && maintainer ? maintainer.emergencyContact : '' %>" id="emergencyContact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Emergency contact">
                         <label for="emergencyContact">Emergency contact <span class="text-red-400">*</span></label>
                     </div>
                 </div>
-                <div class="mt-8">
-                    <button id="createMaintainer" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                <div class="mt-8">                    
+                    <% if (typeof maintainer !== 'undefined' && maintainer ){ %>
+                        <button id="updateMaintainer" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Update</button>
+                    <% } else { %>
+                        <button id="createMaintainer" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                    <% } %>  
                 </div>
             </form>
         </div>

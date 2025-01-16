@@ -41,3 +41,16 @@ module.exports.create = async (req,res)=>{
         }
     });
 }
+
+
+module.exports.getUpdateView = async (req,res)=>{
+    const reqId = req.params.id;
+
+    const maintainerDetails = await maintainers.findOne({
+        where : {
+            id : reqId
+        }
+    });
+
+    res.render('user/forms/maintainers', {maintainer : maintainerDetails});
+}
