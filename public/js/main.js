@@ -150,9 +150,40 @@ $('#createMaintainer').click(function (e) {
     const emergencyContact = $("#emergencyContact").val();
 
     if (nic && callingName && fullName && jobRole && contact && emergencyContact){
-
-    }
-    else{
+        $.ajax({
+            type: "post",
+            url: "/user/maintainers/add",
+            data: {
+                "callingName" : callingName,
+                "fullName" : fullName,
+                "nic" : nic,
+                "jobRole" : jobRole,
+                "workStart" : workStartedDate,
+                "workEnd" : workEndDate,
+                "address" : address,
+                "contact" : contact,
+                "emergencyContact" : emergencyContact
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    $('#callingName').val("");
+                    $("#fullName").val("");
+                    $("#nic").val("");
+                    $("#jobRole").val("");
+                    $("#workStartedDate").val("");
+                    $("#workEndDate").val("");
+                    $("#address").val("");
+                    $("#contact").val("");
+                    $("#emergencyContact").val("");
+                    
+                    showAlert("Successfully created", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
         showAlert("You missed some required fields", "#ff1100");
     }
 });
