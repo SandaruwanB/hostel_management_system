@@ -16,3 +16,18 @@ function closeSidebar(){
     $('.sidebar').addClass('hidden');
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const element = document.getElementById('account');
+    const choices = new Choices(element, {
+        searchEnabled: true,
+        placeholderValue: "Select account"
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const element = document.getElementById('faculty');
+    const choices = new Choices(element, {
+        searchEnabled: true,
+        placeholderValue: "Select account"
+    });
+});
