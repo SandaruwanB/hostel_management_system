@@ -20,6 +20,7 @@ route.post('/user/users/add', authCheck, userController.create);
 
 route.get('/user/students', authCheck, studentsController.index);
 route.get('/user/students/add', authCheck, studentsController.getCreateView);
+route.post('/user/students/add', authCheck, studentsController.create);
 
 route.get('/user/payments', authCheck, paymentsController.index);
 route.get('/user/payments/add', authCheck, paymentsController.getCreateView);

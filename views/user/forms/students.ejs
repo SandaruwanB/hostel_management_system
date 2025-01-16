@@ -23,11 +23,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="full_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Full name">
-                        <label for="full_name">Full name</label>
+                        <label for="full_name">Full name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="registration_number" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Registration number">
-                        <label for="registration_number">Registration number</label>
+                        <label for="registration_number">Registration number <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-1 gap-5">
@@ -45,7 +45,7 @@
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Contact">
-                        <label for="contact">Contact</label>
+                        <label for="contact">Contact <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="email" id="email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email address">
@@ -75,7 +75,7 @@
                                 <option value="<%= faculty.id %>"><%= faculty.name %></option>
                             <% } %>
                         </select>
-                        <label for="faculty">Student faculty</label>
+                        <label for="faculty">Student faculty <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <p class="text-gray-700 mt-5">Guardian details</p>
@@ -83,11 +83,11 @@
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="text" id="guardians_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians name">
-                        <label for="guardians_name">Guardians name</label>
+                        <label for="guardians_name">Guardians name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="guardians_contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians contact">
-                        <label for="guardians_contact">Guardians contact</label>
+                        <label for="guardians_contact">Guardians contact <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="guardians_email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians email">

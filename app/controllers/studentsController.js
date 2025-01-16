@@ -26,3 +26,43 @@ module.exports.getCreateView = async (req,res)=>{
 
     res.render('user/forms/students', {faculties : facultyList, users : userAccounts});
 }
+
+module.exports.create = async (req, res)=>{
+    const { full_name, registration_number, permanant_address, temporary_address, contact, email, account, faculty, guardians_name, guardians_contact, guardians_email} = req.body;
+
+    await students.findOne({
+        where : {
+            registration_number : registration_number
+        }
+    }).then( async (existing)=>{
+        if (existing){
+            res.json({result : "This student already exists"});
+        } else {
+            await students.findOne({
+                where : {
+                    userAccountId : account
+                }
+            }).then( async (student)=>{
+                if (student){
+                    res.json({result : "Selected account linked to another student"});
+                } else {
+                    await students.create({
+                        full_name : full_name,
+                        registration_number : registration_number,
+                        permanant_address : permanant_address,
+                        temporary_address : temporary_address,
+                        contact : contact,
+                        email : email,
+                        guardians_name : guardians_name,
+                        guardians_contact : guardians_contact,
+                        guardians_email : guardians_email,
+                        userAccountId : account,
+                        facultyId : faculty
+                    }).then(()=>{
+                        res.json({result : "success"});
+                    });
+                }
+            });
+        }
+    });
+}
