@@ -35,3 +35,14 @@ module.exports.create = async (req,res)=>{
         }
     })
 }
+
+module.exports.getUpdateView = async (req, res)=>{
+    const reqId = req.params.id;
+    const selectedFaculty = await faculties.findOne({
+        where : {
+            'id' : reqId
+        }
+    });
+
+    res.render('user/forms/faculty', {faculty : selectedFaculty});
+}
