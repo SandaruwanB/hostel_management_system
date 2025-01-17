@@ -42,6 +42,10 @@ const students = sequalize.define('students', {
     },
     total_paid : {
         type : DataTypes.FLOAT
+    },
+    status : {
+        type : DataTypes.BOOLEAN,
+        default : true
     }
 });
 
