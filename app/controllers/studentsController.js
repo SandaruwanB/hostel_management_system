@@ -57,7 +57,8 @@ module.exports.create = async (req, res)=>{
                         guardians_contact : guardians_contact,
                         guardians_email : guardians_email,
                         userAccountId : account ? account : null,
-                        facultyId : faculty
+                        facultyId : faculty,
+                        status : true,
                     }).then(()=>{
                         res.json({result : "success"});
                     });

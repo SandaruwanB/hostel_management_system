@@ -26,6 +26,7 @@
                     <th class="text-center p-2">Email</th>
                     <th class="text-center p-2">Contact</th>
                     <th class="text-center p-2">Emergency contact</th>
+                    <th class="text-center p-2">Hostel status</th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -37,6 +38,13 @@
                                 <td class="text-center p-2" onclick="window.location.replace('/user/students/<%= student.id %>')"><%= student.email %></td>                            
                                 <td class="text-center p-2" onclick="window.location.replace('/user/students/<%= student.id %>')""><%= student.contact %></td>
                                 <td class="text-center p-2" onclick="window.location.replace('/user/students/<%= student.id %>')"><%= student.guardians_contact %></td>
+                                <td class="text-center p-2" onclick="window.location.replace('/user/students/<%= student.id %>')">
+                                    <% if (student.status == 1){ %>
+                                        <span class="bg-green-500 rounded-xl px-5 py-[2px]">In</span>
+                                    <% } else { %>
+                                        <span class="bg-red-500 rounded-xl px-5 py-[2px]">Out</span>
+                                    <% } %>
+                                </td>
                                 <td></td>
                             </tr>
                         <% } %>
