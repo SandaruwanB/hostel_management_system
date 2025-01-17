@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Grid | Faculty - <%= typeof student !== 'undefined' && student ? student.registration_number : 'add' %></title>
+    <%- include('../../../components/externalImports') %>
+</head>
+<body>
+    <div class="max-w-screen-xl mx-auto px-4 md:px-1">
+        <div class="mt-10 flex items-center relative">
+            <a href="/user/students" class="absolute left-0">
+                <svg class="w-10 h-10 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+                </svg>
+            </a>
+            <h1 class="pl-16 inline text-xl font-bold text-gray-700">
+                <%= typeof student !== 'undefined' && student ? student.registration_number : 'Add Student' %>
+            </h1>              
+        </div>
+        <div class="mt-14 mb-14">
+            <p class="text-gray-700">Personal details</p>
+            <hr class="bg-black h-[2px] mb-8"/>
+            <form action="" class="w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.full_name : '' %>" id="full_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Full name">
+                        <label for="full_name">Full name <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.registration_number : '' %>" id="registration_number" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Registration number">
+                        <label for="registration_number">Registration number <span class="text-red-400">*</span></label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-1 gap-5">
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.permanant_address : '' %>" id="permanant_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Permanant address">
+                        <label for="permanant_address">Permanant address</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-1 gap-5">
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.temporary_address : '' %>" id="temporary_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Temporary address">
+                        <label for="temporary_address">Temporary address</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.contact : '' %>" id="contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Contact">
+                        <label for="contact">Contact <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="email" value="<%= typeof student !== 'undefined' && student ? student.email : '' %>" id="email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email address">
+                        <label for="email">Email address</label>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-5">User account details</p>
+                <hr class="bg-black h-[2px] mb-8"/>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <select id="account" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent">
+                            <option value="">Select account</option>
+                            <% for (const user of users) { %>
+                                <option value="<%= user.id %>"  ><%= user.email %> | <%= user.userName %></option>
+                            <% } %>
+                        </select>
+                        <label for="account">Associate account</label>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-5">Faculty details</p>
+                <hr class="bg-black h-[2px] mb-8"/>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <select id="faculty" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Student faculty">
+                            <option value="">Select faculty</option>
+                            <% for (const faculty of faculties) { %>
+                                <option value="<%= faculty.id %>"  ><%= faculty.name %></option>
+                            <% } %>
+                        </select>
+                        <label for="faculty">Student faculty <span class="text-red-400">*</span></label>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-5">Guardian details</p>
+                <hr class="bg-black h-[2px] mb-8"/>
+                <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.guardians_name : '' %>" id="guardians_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians name">
+                        <label for="guardians_name">Guardians name <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.guardians_contact : '' %>" id="guardians_contact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians contact">
+                        <label for="guardians_contact">Guardians contact <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.guardians_email : '' %>" id="guardians_email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Guardians email">
+                        <label for="guardians_email">Guardians email</label>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <button id="createStudent" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('../../../components/bottomIncludes.ejs') %>
+</body>
+</html>

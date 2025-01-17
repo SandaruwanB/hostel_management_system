@@ -24,7 +24,7 @@ module.exports.getCreateView = async (req,res)=>{
     });
     const facultyList = await faculties.findAll();
 
-    res.render('user/forms/students', {faculties : facultyList, users : userAccounts});
+    res.render('user/forms/student/create', {faculties : facultyList, users : userAccounts});
 }
 
 module.exports.create = async (req, res)=>{
@@ -100,5 +100,5 @@ module.exports.getUpdateView = async (req, res)=>{
     });
     const facultyList = await faculties.findAll();
 
-    res.render('user/forms/students', {faculties : facultyList, users : userAccounts, student : studentDetails});
+    res.render('user/forms/student/edit', {faculties : facultyList, users : userAccounts, student : studentDetails});
 }
