@@ -31,3 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
         placeholderValue: "Select account"
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const element = document.getElementById('student');
+    const choices = new Choices(element, {
+        searchEnabled: true,
+        placeholderValue: "Select account"
+    });
+});
