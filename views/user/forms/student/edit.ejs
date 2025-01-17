@@ -61,7 +61,7 @@
                         <select id="account" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent">
                             <option value="">Select account</option>
                             <% for (const user of users) { %>
-                                <option value="<%= user.id %>"  ><%= user.email %> | <%= user.userName %></option>
+                                <option value="<%= user.id %>" <%= typeof student !== 'undefined' && student.userAccount.id == user.id ? 'selected' : '' %>  ><%= user.email %> | <%= user.userName %></option>
                             <% } %>
                         </select>
                         <label for="account">Associate account</label>
@@ -74,7 +74,7 @@
                         <select id="faculty" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Student faculty">
                             <option value="">Select faculty</option>
                             <% for (const faculty of faculties) { %>
-                                <option value="<%= faculty.id %>"  ><%= faculty.name %></option>
+                                <option value="<%= faculty.id %>" <%= typeof student !== 'undefined' && student.faculty.id == faculty.id ? 'selected' : '' %>  ><%= faculty.name %></option>
                             <% } %>
                         </select>
                         <label for="faculty">Student faculty <span class="text-red-400">*</span></label>
