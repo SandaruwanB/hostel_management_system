@@ -249,6 +249,52 @@ $("#createStudent").click(function (e) {
     }
 });
 
+
+// PAYMENT
+// create payment
+$('#createPayment').click(function (e) { 
+    e.preventDefault();
+
+    const paymentMethod = $('#paymentMethod').val();
+    const paymentDate = $('#paymentDate').val();
+    const amount = $('#amount').val();
+    const payslipNumber = $('#payslipNumber').val();
+    const paymentForMonth = $('#paymentForMonth').val();
+    const student = $('#student').val();
+
+    if (paymentMethod && amount && paymentDate && paymentForMonth && student){
+        $.ajax({
+            type: "post",
+            url: "/user/payments/add",
+            data: {
+                "paymentMethod" : paymentMethod,
+                "paymentDate" : paymentDate,
+                "amount" : amount,
+                "payslipNumber" : payslipNumber,
+                "paymentForMonth" : paymentForMonth,
+                "student" : student
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    $('#paymentMethod').val("");
+                    $('#paymentDate').val("");
+                    $('#amount').val("");
+                    $('#payslipNumber').val("");
+                    $('#paymentForMonth').val("");
+                    $('#student').val("");
+
+                    showAlert("Payment created", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("You missed some required fields", "#ff1100");
+    }
+});
+
 function showAlert(error, color){
     Toastify({
         text: `${error}`,
