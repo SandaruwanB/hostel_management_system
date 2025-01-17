@@ -150,9 +150,101 @@ $('#createMaintainer').click(function (e) {
     const emergencyContact = $("#emergencyContact").val();
 
     if (nic && callingName && fullName && jobRole && contact && emergencyContact){
-
+        $.ajax({
+            type: "post",
+            url: "/user/maintainers/add",
+            data: {
+                "callingName" : callingName,
+                "fullName" : fullName,
+                "nic" : nic,
+                "jobRole" : jobRole,
+                "workStart" : workStartedDate,
+                "workEnd" : workEndDate,
+                "address" : address,
+                "contact" : contact,
+                "emergencyContact" : emergencyContact
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    $('#callingName').val("");
+                    $("#fullName").val("");
+                    $("#nic").val("");
+                    $("#jobRole").val("");
+                    $("#workStartedDate").val("");
+                    $("#workEndDate").val("");
+                    $("#address").val("");
+                    $("#contact").val("");
+                    $("#emergencyContact").val("");
+                    
+                    showAlert("Successfully created", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("You missed some required fields", "#ff1100");
     }
-    else{
+});
+
+
+// STUDENT
+// create student
+$("#createStudent").click(function (e) { 
+    e.preventDefault();
+    
+    const full_name = $('#full_name').val();
+    const registration_number = $('#registration_number').val();
+    const permanant_address = $('#permanant_address').val();
+    const temporary_address = $('#temporary_address').val();
+    const contact = $('#contact').val();
+    const email = $('#email').val();
+    const account = $('#account').val();
+    const faculty = $('#faculty').val();
+    const guardians_name = $('#guardians_name').val();
+    const guardians_contact = $('#guardians_contact').val();
+    const guardians_email = $('#guardians_email').val();
+
+    if (full_name && registration_number && contact && faculty && guardians_name && guardians_contact){
+        $.ajax({
+            type: "post",
+            url: "/user/students/add",
+            data: {
+                "full_name" : full_name,
+                "registration_number" : registration_number,
+                "permanant_address" : permanant_address,
+                "temporary_address" : temporary_address,
+                "contact" : contact,
+                "email" : email,
+                "account" : account,
+                "faculty" : faculty,
+                "guardians_name" : guardians_name,
+                "guardians_contact" : guardians_contact,
+                "guardians_email" : guardians_email
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    $('#full_name').val("");
+                    $('#registration_number').val("");
+                    $('#permanant_address').val("");
+                    $('#temporary_address').val("");
+                    $('#contact').val("");
+                    $('#email').val("");
+                    $('#account').val("");
+                    $('#faculty').val("");
+                    $('#guardians_name').val("");
+                    $('#guardians_contact').val("");
+                    $('#guardians_email').val("");
+
+                    showAlert("Successfully created", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
         showAlert("You missed some required fields", "#ff1100");
     }
 });
