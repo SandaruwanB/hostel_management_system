@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stay Grid | Maintainers - add</title>
+    <title>Stay Grid | Payments - create</title>
     <%- include('../../components/externalImports') %>
 </head>
 <body>
@@ -27,17 +27,17 @@
                             <option value="cash">Cash</option>
                             <option value="bank">Bank</option>
                         </select>
-                        <label for="paymentMethod">Payment method</label>
+                        <label for="paymentMethod">Payment method <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="date" id="paymentDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payment date">
-                        <label for="paymentDate">Payment date</label>
+                        <label for="paymentDate">Payment date <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <input type="number" step="0.01" id="amount" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Amount">
-                        <label for="amount">Amount</label>
+                        <label for="amount">Amount <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <input type="text" id="payslipNumber" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payslip number">
@@ -45,7 +45,16 @@
                     </div>
                     <div class="w-full">
                         <input type="date" id="paymentForMonth" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payment for">
-                        <label for="paymentForMonth">Payment for</label>
+                        <label for="paymentForMonth">Payment for <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <select id="student" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent">
+                            <option value="">Select student</option>
+                            <% for (const student of students){ %>
+                                <option value="<%= student.id %>"><%= student.full_name %></option>
+                            <% } %>
+                        </select>
+                        <label for="paymentForMonth">Student <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="mt-8">
@@ -54,5 +63,6 @@
             </form>
         </div>
     </div>
+    <%- include('../../components/bottomIncludes.ejs') %>
 </body>
 </html>

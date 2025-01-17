@@ -13,6 +13,8 @@ module.exports.index = async (req, res)=>{
     res.render('user/payments', {user : req.user, payments : paymentDetails});
 }
 
-module.exports.getCreateView = (req, res)=>{
-    res.render('user/forms/payments', {user : req.user});
+module.exports.getCreateView = async (req, res)=>{
+    const studentsDetails = await students.findAll();
+    console.log(studentsDetails);
+    res.render('user/forms/payments', {user : req.user, students : studentsDetails});
 }
