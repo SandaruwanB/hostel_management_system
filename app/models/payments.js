@@ -22,6 +22,9 @@ const payments = sequalize.define('payments', {
     },
     payslipNumber : {
         type : DataTypes.STRING
+    },
+    paymentForMonth : {
+        type : DataTypes.STRING
     }
 });
 
