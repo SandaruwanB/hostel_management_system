@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stay Grid | Payments - create</title>
+    <title>Stay Grid | Payments - <%= typeof payment !== 'undefined' && payment ? payment.name : 'create' %></title>
     <%- include('../../components/externalImports') %>
 </head>
 <body>
