@@ -71,7 +71,13 @@ module.exports.getUpdateView = async (req,res)=>{
         ]
     });
 
-    res.render('user/forms/payments', {payment : paymentDetails});
+    const student = await students.findOne({
+        where : {
+            id : paymentDetails.studentId
+        }
+    });
+
+    res.render('user/forms/payments', {payment : paymentDetails, students : [student]});
 }
 
 
