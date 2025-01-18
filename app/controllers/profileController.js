@@ -16,7 +16,13 @@ module.exports.updateUserData = async (req, res)=>{
         }).then( async (user)=>{
             bcrypt.compare(oldpassword, user.password).then((result)=>{
                 if (result){
-                    
+                    bcrypt.hash(newpassword,10, async function (err, hash){
+                        await user.update({
+                            password : hash
+                        }).then(()=>{
+                            res.json({result : "success"});
+                        });
+                    });
                 } else {
                     res.json({result : "Incorrect old password"});
                 }
