@@ -12,7 +12,45 @@
     <%- include('./components/navbar.ejs') %>
     <div class="ml-0 md:ml-[300px] p-3">
         <h1 class="text-2xl font-bold pl-5 pt-5">My Account</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 p-5">
+        <div class="px-5 mt-10">
+            <p class="text-gray-700">Account details</p>
+            <hr class="bg-black h-[2px] mb-8"/>
+            <form action="" class="w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof user !== 'undefined' && user ? user.userName : '' %>" id="userName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="User name">
+                        <label for="userName">User name <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="email" value="<%= typeof user !== 'undefined' && user ? user.email : '' %>" id="email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email">
+                        <label for="email">Email <span class="text-red-400">*</span></label>
+                    </div>
+                </div>
+                <div class="mt-7">                    
+                    <button id="updateAccountDetails" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Update</button>
+                </div>
+            </form>
+            <p class="text-gray-700 mt-10">Password details</p>
+            <hr class="bg-black h-[2px] mb-8"/>
+            <form action="" class="w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="w-full">
+                        <input type="password" id="oldpassword" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Old password ">
+                        <label for="oldpassword">Old password <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="password" id="newpassword" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="New password">
+                        <label for="newpassword">New password <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <input type="password" id="renewpassword" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Re-enter new password">
+                        <label for="renewpassword">Re-enter new password <span class="text-red-400">*</span></label>
+                    </div>
+                </div>
+                <div class="mt-7">                    
+                    <button id="updatePassword" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Change password</button>
+                </div>
+            </form>
         </div>
     </div>
     <%- include('../components/bottomIncludes.ejs') %>
