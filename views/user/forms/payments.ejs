@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stay Grid | Payments - create</title>
+    <title>Stay Grid | Payments - <%= typeof payment !== 'undefined' && payment ? payment.name : 'create' %></title>
     <%- include('../../components/externalImports') %>
 </head>
 <body>
@@ -14,7 +14,9 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
                 </svg>
             </a>
-            <h1 class="pl-16 inline text-xl font-bold text-gray-700">Create Payment</h1>              
+            <h1 class="pl-16 inline text-xl font-bold text-gray-700">
+                <%= typeof payment !== 'undefined' && payment ? payment.name : 'Create Payment' %>
+            </h1>              
         </div>
         <div class="mt-14">
             <p class="text-gray-700">Payment details</p>
@@ -23,33 +25,40 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
                         <select id="paymentMethod" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent">
-                            <option value="">Select</option>
-                            <option value="cash">Cash</option>
-                            <option value="bank">Bank</option>
+                            <% if (typeof payment !== 'undefined' && payment){ %>
+                                <option value="<%= typeof payment !== 'undefined' && payment ? payment.paymentMethod : '' %>"><%= typeof payment !== 'undefined' && payment.paymentMethod === 'cash' ? "Cash" : "Bank" %></option>
+                            <% } else { %>
+                                <option value="">Select</option>
+                                <option value="cash">Cash</option>
+                                <option value="bank">Bank</option>
+                            <% } %>
                         </select>
                         <label for="paymentMethod">Payment method <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
-                        <input type="date" id="paymentDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payment date">
+                        <input type="date" value="<%= typeof payment !== 'undefined' && payment ? payment.paymentDate : '' %>" id="paymentDate" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payment date">
                         <label for="paymentDate">Payment date <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="number" step="0.01" id="amount" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Amount">
+                        <input type="number" value="<%= typeof payment !== 'undefined' && payment ? payment.amount : '' %>" step="0.01" id="amount" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Amount">
                         <label for="amount">Amount <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="payslipNumber" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payslip number">
+                        <input type="text" value="<%= typeof payment !== 'undefined' && payment ? payment.payslipNumber : '' %>" id="payslipNumber" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payslip number">
                         <label for="payslipNumber">Payslip number</label>
                     </div>
                     <div class="w-full">
-                        <input type="date" id="paymentForMonth" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payment for">
+                        <input type="date" value="<%= typeof payment !== 'undefined' && payment ? payment.paymentForMonth : '' %>" id="paymentForMonth" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Payment for">
                         <label for="paymentForMonth">Payment for <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
                         <select id="student" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent">
-                            <option value="">Select student</option>
+                            <% if (typeof payment !== 'undefined' && payment){ %>
+                            <% } else { %>
+                                <option value="">Select student</option>
+                            <% } %>                            
                             <% for (const student of students){ %>
                                 <option value="<%= student.id %>"><%= student.full_name %></option>
                             <% } %>
@@ -58,7 +67,10 @@
                     </div>
                 </div>
                 <div class="mt-8">
-                    <button id="createPayment" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                    <% if (typeof payment !== 'undefined' && payment){ %>
+                    <% } else { %>
+                        <button id="createPayment" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                    <% } %>                    
                 </div>
             </form>
         </div>
