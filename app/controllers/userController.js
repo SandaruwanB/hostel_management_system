@@ -18,6 +18,9 @@ module.exports.index = async (req, res)=>{
                     as: 'role',
                 },
             ],
+            order : [
+                ['id', 'DESC']
+            ]
         });
     }
     else if(req.user.role.name == "manager"){
@@ -36,6 +39,9 @@ module.exports.index = async (req, res)=>{
                     }
                 },
             ],
+            order : [
+                ['id', 'DESC']
+            ]
         });
     }
     else{
