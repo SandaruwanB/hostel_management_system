@@ -157,6 +157,24 @@ $('#updateUserPassword').click(function (e) {
 });
 
 
+// remove user 
+$('#delete').click(function (e) { 
+    e.preventDefault();
+    const id = $('#delete').val();
+    
+    $.ajax({
+        type: "delete",
+        url: `/user/users/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/users");
+            }
+        }
+    });
+});
+
 // FACULTY 
 // create faculty
 
@@ -397,6 +415,109 @@ $("#createStudent").click(function (e) {
 });
 
 
+// update student
+$('#updateStudent').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#updateStudent').val();
+    const full_name = $('#full_name').val();
+    const registration_number = $('#registration_number').val();
+    const permanant_address = $('#permanant_address').val();
+    const temporary_address = $('#temporary_address').val();
+    const contact = $('#contact').val();
+    const email = $('#email').val();
+    const account = $('#account').val();
+    const faculty = $('#faculty').val();
+    const guardians_name = $('#guardians_name').val();
+    const guardians_contact = $('#guardians_contact').val();
+    const guardians_email = $('#guardians_email').val();
+
+    if (full_name && registration_number && contact && faculty && guardians_name && guardians_contact){
+        $.ajax({
+            type: "put",
+            url: `/user/students/${id}`,
+            data: {
+                "full_name" : full_name,
+                "registration_number" : registration_number,
+                "permanant_address" : permanant_address,
+                "temporary_address" : temporary_address,
+                "contact" : contact,
+                "email" : email,
+                "account" : account,
+                "faculty" : faculty,
+                "guardians_name" : guardians_name,
+                "guardians_contact" : guardians_contact,
+                "guardians_email" : guardians_email
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    showAlert("Successfully updated", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("You missed some required fields", "#ff1100");
+    }
+});
+
+
+// student out or in
+$('#createStudentInOut').click(function (e) { 
+    e.preventDefault();
+
+    const student = $('#student').val();
+    const in_or_out = $('#inOrOut').val();
+    const reason = $('#reason').val();
+
+    if ($('#inOrOut').is(":checked")){
+        if (student && reason){
+            $.ajax({
+                type: "put",
+                url: "/user/students",
+                data: {
+                    'student' : student,
+                    'is_out' : true,
+                    'reason' : reason
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        window.location.replace("/user/students");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("All fields are required", "#ff1100");
+        }
+    } else {
+        if (student){
+            $.ajax({
+                type: "put",
+                url: "/user/students",
+                data: {
+                    'student' : student,
+                    'is_out' : false,
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        window.location.replace("/user/students");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("Please choose student", "#ff1100");
+        }
+    }
+});
+
 // PAYMENT
 // create payment
 $('#createPayment').click(function (e) { 
@@ -498,6 +619,21 @@ function markAsRead(id){
     });
 }
 
+function markAndNavigate(id){
+    $.ajax({
+        type: "put",
+        url: `/user/complaints/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace(`/user/complaints/${id}`);
+            } else {
+                showAlert("Err. happend please try again", "#ff1100");
+            }
+        }
+    });
+}
 
 function showAlert(error, color){
     Toastify({

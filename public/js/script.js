@@ -51,3 +51,31 @@ function updateClock() {
 
 setInterval(updateClock, 1000);
 updateClock();
+
+$('#studentHostelStatus').click(function (e) { 
+    e.preventDefault();
+    $('#outInMarker').removeClass('hidden');
+});
+
+$('#cancelStudentInOut').click(function (e) { 
+    e.preventDefault();
+    $('#outInMarker').addClass('hidden');
+});
+
+function checkboxClicked(cb){
+    if(cb.checked){
+        $('#reasonField').removeClass('hidden');
+    } else {
+        $('#reason').val('');
+        $('#reasonField').addClass('hidden');
+    }
+}
+
+function removeUser(id, model){
+    $('#removeModel').removeClass('hidden');
+    $('#delete').val(id);
+}
+
+function cancelDelete(){
+    $('#removeModel').addClass('hidden');
+}

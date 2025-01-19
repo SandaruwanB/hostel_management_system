@@ -14,40 +14,47 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
                 </svg>
             </a>
-            <h1 class="pl-16 inline text-xl font-bold text-gray-700">View complaint</h1>              
+            <h1 class="pl-16 inline text-xl font-bold text-gray-700">
+                <%= typeof complain !== 'undefined' && complain ? complain.subject : '' %>
+            </h1>              
         </div>
         <div class="mt-14">
-            <p class="text-gray-700">Personal details</p>
+            <p class="text-gray-700">User account and student details</p>
             <hr class="bg-black h-[2px] mb-8"/>
             <form action="" class="w-full">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="text" id="name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Faculty Name">
-                        <label for="name">Name</label>
+                        <input type="text" id="name" value="<%= typeof complain !== 'undefined' && complain ? complain.user.userName : '' %>" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" readonly>
+                        <label for="name">Complained user</label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="location" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Location">
-                        <label for="location">Location</label>
+                        <input type="text" value="<%= typeof complain !== 'undefined' && complain ? complain.user.email : '' %>" id="location" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" readonly>
+                        <label for="location">Complain user email</label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.full_name : '' %>" id="name" value="<%= typeof complain !== 'undefined' && complain ? complain.user.userName : '' %>" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" readonly>
+                        <label for="name">Related student</label>
+                    </div>
+                    <div class="w-full">
+                        <input type="text" value="<%= typeof student !== 'undefined' && student ? student.registration_number : '' %>" id="location" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" readonly>
+                        <label for="location">Related student registration number</label>
                     </div>
                 </div>
+                <p class="text-gray-700 mt-8">Complain details</p>
+                <hr class="bg-black h-[2px] mb-8"/>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="text" id="hod_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Name">
-                        <label for="hod_name">HOD Name</label>
+                        <input type="text" value="<%= typeof complain !== 'undefined' && complain ? complain.subject : '' %>" id="hod_name" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" readonly>
+                        <label for="hod_name">Subject</label>
                     </div>
                     <div class="w-full">
-                        <input type="text" id="hod_cantact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Contact">
-                        <label for="hod_cantact">HOD Contact</label>
+                        <input type="text" value="<%= typeof complain !== 'undefined' && complain ? complain.createdAt : '' %>" id="hod_cantact" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Contact">
+                        <label for="hod_cantact">Date and time</label>
                     </div>
-                    <div class="w-full">
-                        <input type="text" id="hod_address" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="HOD Address">
-                        <label for="hod_address">HOD Address</label>
+                    <div class="w-full col-span-2">
+                        <textarea class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" rows="5"><%= typeof complain !== 'undefined' && complain ? complain.message : '' %></textarea>
+                        <label for="hod_address">Message</label>
                     </div>
-                </div>
-                <p class="text-gray-700 mt-5">User account details</p>
-                <hr class="bg-black h-[2px] mb-8"/>
-                <div class="mt-8">
-                    <button id="createFaculty" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
                 </div>
             </form>
         </div>

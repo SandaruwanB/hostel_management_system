@@ -21,7 +21,7 @@
         <% if (typeof student !== 'undefined' && student ) { %>
             <div class="flex justify-center mt-5">
                 <div class="text-center bg-blue-100 border-[1px] border-blue-300 px-5 py-1">
-                    <span class="text-[1.1rem] text-blue-900"><%= typeof student !== 'undefined' && student ? student.total_paid : 0 %></span>
+                    <span class="text-[1.1rem] text-blue-900"><%= typeof student !== 'undefined' && student && student.total_paid ? student.total_paid : 0 %></span>
                     <div class="block text-[.8rem]">
                         Total paid
                     </div>
@@ -83,7 +83,7 @@
                         <select id="account" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent">
                             <option value="">Select account</option>
                             <% for (const user of users) { %>
-                                <option value="<%= user.id %>" <%= typeof student !== 'undefined' && student.userAccount.id == user.id ? 'selected' : '' %>  ><%= user.email %> | <%= user.userName %></option>
+                                <option value="<%= user.id %>" <%= typeof student !== 'undefined' && student.userAccountId == user.id ? 'selected' : '' %>  ><%= user.email %> | <%= user.userName %></option>
                             <% } %>
                         </select>
                         <label for="account">Associate account</label>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="mt-8">
-                    <button id="createStudent" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Create</button>
+                    <button id="updateStudent" value="<%= typeof student !== 'undefined' && student ? student.id : '' %>" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Update</button>
                 </div>
             </form>
         </div>
