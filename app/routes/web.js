@@ -33,6 +33,7 @@ route.get('/user/payments', authCheck, paymentsController.index);
 route.get('/user/payments/add', authCheck, paymentsController.getCreateView);
 route.get('/user/payments/:id', authCheck, paymentsController.getUpdateView);
 route.post('/user/payments/add', authCheck, paymentsController.create);
+route.delete('/user/payments/:id', authCheck, paymentsController.delete);
 
 route.get('/user/maintainers', authCheck, maintainersController.index);
 route.get('/user/maintainers/add', authCheck, maintainersController.getCreateView);

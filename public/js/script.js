@@ -79,6 +79,10 @@ function removeComplain(id){
     $('#removeModel').removeClass('hidden');
     $('#deleteComplain').val(id);
 }
+function removePayment(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deletePayment').val(id);
+}
 
 function cancelDelete(){
     $('#removeModel').addClass('hidden');

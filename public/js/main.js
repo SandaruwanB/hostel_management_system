@@ -563,6 +563,25 @@ $('#createPayment').click(function (e) {
     }
 });
 
+// remove payment
+$('#deletePayment').click(function (e) { 
+    e.preventDefault();
+    
+    const id =  $('#deletePayment').val();
+
+    $.ajax({
+        type: "delete",
+        url: `/user/payments/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/payments");
+            }
+        }
+    });
+});
+
 // USER ACCOUNT
 // update password
 $('#updatePassword').click(function (e) { 
