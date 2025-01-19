@@ -18,7 +18,29 @@
                 <%= typeof student !== 'undefined' && student ? student.registration_number : 'Add Student' %>
             </h1>              
         </div>
-        <div class="mt-14 mb-14">
+        <% if (typeof student !== 'undefined' && student ) { %>
+            <div class="flex justify-center mt-5">
+                <div class="text-center bg-blue-100 border-[1px] border-blue-300 px-5 py-1">
+                    <span class="text-[1.1rem] text-blue-900"><%= typeof student !== 'undefined' && student ? student.total_paid : 0 %></span>
+                    <div class="block text-[.8rem]">
+                        Total paid
+                    </div>
+                </div>
+                <div class="ml-5 text-center bg-blue-100 border-[1px] border-blue-300 px-5 py-1">
+                    <% if (typeof student !== 'undefined' && student.status == 1 ) { %>
+                        <span class="text-white bg-blue-900 px-6 py-[1px] rounded-xl text-[1.1rem]">In</span>
+                    <% } else { %>
+                        <span class="text-white bg-red-900 px-6 py-[1px] rounded-xl text-[1.1rem]">Out</span>
+                    <% } %>                
+                    <div class="block text-[.8rem]">
+                        Status
+                    </div>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="mt-8"></div>
+        <% } %>
+        <div class="mt-2 mb-14">
             <p class="text-gray-700">Personal details</p>
             <hr class="bg-black h-[2px] mb-8"/>
             <form action="" class="w-full">
