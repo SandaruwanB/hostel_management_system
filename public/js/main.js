@@ -133,6 +133,42 @@ $('#createFaculty').click(function (e) {
     }
 });
 
+// update faculty
+$('#updateFaculty').click(function (e) { 
+    e.preventDefault();
+
+    const id = $('#updateFaculty').val();
+    const name = $('#name').val();
+    const location = $('#location').val();
+    const hodName = $('#hod_name').val();
+    const hodContact = $('#hod_cantact').val();
+    const hodAddress = $('#hod_address').val();
+    
+    if (name && location && hodName && hodContact && hodAddress){
+        $.ajax({
+            type: "put",
+            url: `/user/faculty/${id}`,
+            data: {
+                "name" : name,
+                "location" : location,
+                "hodName" : hodName,
+                "hodContact" : hodContact,
+                "hodAddress" : hodAddress
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    showAlert("Successfully updated", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
 
 // MAINTAINERS
 // create maintainer
@@ -178,6 +214,50 @@ $('#createMaintainer').click(function (e) {
                     $("#emergencyContact").val("");
                     
                     showAlert("Successfully created", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("You missed some required fields", "#ff1100");
+    }
+});
+
+// update maintainer
+$('#updateMaintainer').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#updateMaintainer').val();
+    const callingName = $('#callingName').val();
+    const fullName = $("#fullName").val();
+    const nic = $("#nic").val();
+    const jobRole = $("#jobRole").val();
+    const workStartedDate = $("#workStartedDate").val();
+    const workEndDate = $("#workEndDate").val();
+    const address = $("#address").val();
+    const contact = $("#contact").val();
+    const emergencyContact = $("#emergencyContact").val();
+
+    if (nic && callingName && fullName && jobRole && contact && emergencyContact){
+        $.ajax({
+            type: "put",
+            url: `/user/maintainers/${id}`,
+            data: {
+                "callingName" : callingName,
+                "fullName" : fullName,
+                "nic" : nic,
+                "jobRole" : jobRole,
+                "workStart" : workStartedDate,
+                "workEnd" : workEndDate,
+                "address" : address,
+                "contact" : contact,
+                "emergencyContact" : emergencyContact
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    showAlert("Successfully updated", "#0ee30e");
                 } else {
                     showAlert(response.result, "#ff1100");
                 }
@@ -333,6 +413,23 @@ $('#updatePassword').click(function (e) {
 });
 
 
+// COMPLAINT
+// mark as read
+function markAsRead(id){
+    $.ajax({
+        type: "put",
+        url: `/user/complaints/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/complaints");
+            } else {
+                showAlert("Err. happend please try again", "#ff1100");
+            }
+        }
+    });
+}
 
 
 function showAlert(error, color){

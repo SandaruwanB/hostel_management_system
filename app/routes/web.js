@@ -34,14 +34,17 @@ route.get('/user/maintainers', authCheck, maintainersController.index);
 route.get('/user/maintainers/add', authCheck, maintainersController.getCreateView);
 route.get('/user/maintainers/:id', authCheck, maintainersController.getUpdateView);
 route.post('/user/maintainers/add', authCheck, maintainersController.create);
+route.put('/user/maintainers/:id', authCheck, maintainersController.update);
 
 route.get('/user/complaints', authCheck, complaintsController.index);
 route.get('/user/complaints/:id', authCheck, complaintsController.getReadView);
+route.put('/user/complaints/:id', authCheck, complaintsController.update);
 
 route.get('/user/faculty', authCheck, facultyController.index);
 route.get('/user/faculty/add', authCheck, facultyController.getCreateView);
 route.get('/user/faculty/:id', authCheck, facultyController.getUpdateView);
 route.post('/user/faculty/add', authCheck, facultyController.create);
+route.put('/user/faculty/:id', authCheck, facultyController.update);
 
 route.get('/user/account/manage', authCheck, profileController.managerView);
 route.post('/user/account/manage', authCheck, profileController.updateUserData);
