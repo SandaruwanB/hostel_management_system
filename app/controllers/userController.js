@@ -87,11 +87,11 @@ module.exports.create = async (req, res)=>{
         else{
             bcrypt.hash(password,10, async function (err, hash){
                 await users.create({
-                'userName' : username,
-                'email' : email,
-                'password' : hash,
-                'status' : false,
-                'roleId' : role
+                    'userName' : username,
+                    'email' : email,
+                    'password' : hash,
+                    'status' : false,
+                    'roleId' : role
                 }).then(()=>{
                     res.json({result : "success"});
                 });
@@ -132,18 +132,59 @@ module.exports.getEditView = async (req,res)=>{
     res.render('user/forms/users', {'roles' : awailableRoles, user : userData});
 }
 
-module.exports.update = (req, res)=>{
+module.exports.update = async (req, res)=>{
+    const reqId = req.params.id;
+    const { is_password, username, email, role, password } = req.body;
 
+    if (is_password == 'true'){
+        await users.findOne({
+            where : {
+                id : reqId
+            }
+        }).then(async (userDetails)=>{
+            bcrypt.hash(password,10, async function (err, hash){
+                await userDetails.update({
+                    'password' : hash
+                }).then(()=>{
+                    res.json({result : "success"});
+                })
+            });
+        })
+    } else {
+        await users.findAll({
+            where : {
+                [Op.and] : [
+                    {id : {[Op.ne] : reqId}},
+                    {
+                        [Op.or] : [
+                            {email : email},
+                            {userName : username},
+                        ]
+                    }
+                ]
+            }
+        }).then(async (existing)=>{
+            if (existing.length > 0){
+                res.json({result : "This user name or email is already in use."});
+            } else {
+                await users.findOne({
+                    where : {
+                        id : reqId
+                    }
+                }).then(async (user)=>{
+                    await user.update({
+                        'userName' : username,
+                        'email' : email,
+                        'roleId' : role
+                    }).then(()=>{
+                        res.json({result : "success"});
+                    })
+                });
+            }
+        });
+    }
 }
 
 module.exports.delete = (req, res)=>{
 
-}
-
-module.exports.getAll = (req, res)=>{
-
-}
-
-module.exports.getOne = (req, res)=>{
-    
 }

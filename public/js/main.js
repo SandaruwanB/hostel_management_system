@@ -89,6 +89,73 @@ $('#createUser').click(function (e) {
     }
 });
 
+// update user
+$('#updateUserDetails').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#updateUserDetails').val();
+    const username = $('#username').val();
+    const email = $('#email').val();
+    const role = $('#role').val();
+
+    if ( username && email && role){
+        $.ajax({
+            type: "put",
+            url: `/user/users/${id}`,
+            data: {
+                "is_password" : false,
+                "username" : username,
+                "email" : email,
+                "role" : role
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    showAlert("Successfully updated", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
+// update password
+$('#updateUserPassword').click(function (e) { 
+    e.preventDefault();
+
+    const id = $('#updateUserPassword').val();
+    const password = $('#password').val();
+    const repassword = $('#repassword').val();
+
+    if (password && repassword){
+        if (password == repassword){
+            $.ajax({
+                type: "put",
+                url: `/user/users/${id}`,
+                data: {
+                    "is_password" : true,
+                    'password' : password
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        showAlert("Password updated", "#0ee30e");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("Passwords doesn't match", "#ff1100");
+        }
+    } else {
+        showAlert("Both fields are required", "#ff1100");
+    }
+});
+
 
 // FACULTY 
 // create faculty
