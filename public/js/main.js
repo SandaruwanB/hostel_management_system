@@ -224,6 +224,50 @@ $('#createMaintainer').click(function (e) {
     }
 });
 
+// update maintainer
+$('#updateMaintainer').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#updateMaintainer').val();
+    const callingName = $('#callingName').val();
+    const fullName = $("#fullName").val();
+    const nic = $("#nic").val();
+    const jobRole = $("#jobRole").val();
+    const workStartedDate = $("#workStartedDate").val();
+    const workEndDate = $("#workEndDate").val();
+    const address = $("#address").val();
+    const contact = $("#contact").val();
+    const emergencyContact = $("#emergencyContact").val();
+
+    if (nic && callingName && fullName && jobRole && contact && emergencyContact){
+        $.ajax({
+            type: "put",
+            url: `/user/maintainers/${id}`,
+            data: {
+                "callingName" : callingName,
+                "fullName" : fullName,
+                "nic" : nic,
+                "jobRole" : jobRole,
+                "workStart" : workStartedDate,
+                "workEnd" : workEndDate,
+                "address" : address,
+                "contact" : contact,
+                "emergencyContact" : emergencyContact
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    showAlert("Successfully updated", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("You missed some required fields", "#ff1100");
+    }
+});
+
 
 // STUDENT
 // create student
@@ -372,8 +416,6 @@ $('#updatePassword').click(function (e) {
 // COMPLAINT
 // mark as read
 function markAsRead(id){
-    console.log(id);
-
     $.ajax({
         type: "put",
         url: `/user/complaints/${id}`,
