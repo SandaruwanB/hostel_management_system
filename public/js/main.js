@@ -369,6 +369,25 @@ $('#updatePassword').click(function (e) {
 });
 
 
+// COMPLAINT
+// mark as read
+function markAsRead(id){
+    console.log(id);
+
+    $.ajax({
+        type: "put",
+        url: `/user/complaints/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/complaints");
+            } else {
+                showAlert("Err. happend please try again", "#ff1100");
+            }
+        }
+    });
+}
 
 
 function showAlert(error, color){

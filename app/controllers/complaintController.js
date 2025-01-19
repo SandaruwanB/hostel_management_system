@@ -35,7 +35,6 @@ module.exports.index = async (req,res)=>{
             ['id', 'DESC']
         ]
     });
-    console.log(unreadComplaints);
     res.render('user/complaints', {user : req.user, unreadComplaints : unreadComplaints, readComplaints : readComplaits});
 }
 
@@ -49,4 +48,20 @@ module.exports.create = (req,res)=>{
 
 module.exports.getReadView = (req,res)=>{
     res.render('user/forms/complaints', {user : req.user});
+}
+
+module.exports.update = async (req,res)=>{
+    const reqId = req.params.id;
+
+    await complaints.findOne({
+        where : {
+            id : reqId
+        }
+    }).then(async (complain)=>{
+        await complain.update({
+            status : 1
+        }).then(()=>{
+            res.json({result : "success"});
+        });
+    });
 }

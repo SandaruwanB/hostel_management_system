@@ -37,6 +37,7 @@ route.post('/user/maintainers/add', authCheck, maintainersController.create);
 
 route.get('/user/complaints', authCheck, complaintsController.index);
 route.get('/user/complaints/:id', authCheck, complaintsController.getReadView);
+route.put('/user/complaints/:id', authCheck, complaintsController.update);
 
 route.get('/user/faculty', authCheck, facultyController.index);
 route.get('/user/faculty/add', authCheck, facultyController.getCreateView);
