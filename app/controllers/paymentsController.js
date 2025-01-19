@@ -8,6 +8,9 @@ module.exports.index = async (req, res)=>{
                 model : students,
                 as : "student"
             }
+        ],
+        order : [
+            ['id', 'DESC']
         ]
     });
     res.render('user/payments', {user : req.user, payments : paymentDetails});

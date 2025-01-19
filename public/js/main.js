@@ -295,6 +295,46 @@ $('#createPayment').click(function (e) {
     }
 });
 
+// USER ACCOUNT
+// update password
+$('#updatePassword').click(function (e) { 
+    e.preventDefault();
+
+    const oldpassword = $('#oldpassword').val();
+    const newpassword = $('#newpassword').val();
+    const renewpassword = $('#renewpassword').val();
+
+    if (oldpassword && newpassword && renewpassword){
+        if (newpassword == renewpassword){
+            $.ajax({
+                type: "post",
+                url: "/user/account/manage",
+                data: {
+                    "ispassword" : true,
+                    "oldpassword" : oldpassword,
+                    "newpassword" : newpassword,
+                    "renewpassword" : renewpassword
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        showAlert("Successfully updated", "#0ee30e");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("New passwords doesn't matched", "#ff1100");
+        }
+    } else {
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
+
+
+
 function showAlert(error, color){
     Toastify({
         text: `${error}`,

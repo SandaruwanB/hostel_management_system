@@ -6,6 +6,7 @@ const paymentsController = require('../controllers/paymentsController');
 const maintainersController = require('../controllers/maintainersController');
 const complaintsController = require('../controllers/complaintController');
 const facultyController = require('../controllers/facultyController');
+const profileController = require('../controllers/profileController');
 const { authCheck, isAuthenticated } = require('../middleware/authMiddleware');
 
 const route = require('express').Router();
@@ -42,6 +43,8 @@ route.get('/user/faculty/add', authCheck, facultyController.getCreateView);
 route.get('/user/faculty/:id', authCheck, facultyController.getUpdateView);
 route.post('/user/faculty/add', authCheck, facultyController.create);
 
+route.get('/user/account/manage', authCheck, profileController.managerView);
+route.post('/user/account/manage', authCheck, profileController.updateUserData);
 
 
 // auth routes
