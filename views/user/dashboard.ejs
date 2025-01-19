@@ -71,6 +71,80 @@
                 </div> 
             </div>
         </div>
+        <div class="px-5">
+            <p class="text-gray-700 mt-5">Latest complaints</p>
+            <hr class="bg-black h-[2px] mb-5"/>
+            <table class="w-full table-auto">
+                <thead class="border-2 bg-gray-300 border-gray-300">
+                    <th class="text-left p-1">User</th>
+                    <th class="text-left p-1">Email</th>
+                    <th class="text-left p-1">Subject</th>
+                    <th class="text-left p-1">Message</th>
+                    <th class="text-center p-1">Status</th>
+                </thead>
+                <tbody>
+                    <% if (recentComplaints.length > 0){ %>
+                        <% for (const complaint of recentComplaints){ %>
+                            <tr class="border-b-[2px] border-gray-200">
+                                <td class="text-left p-1"><%= complaint.user.userName %></td>
+                                <td class="text-left p-1"><%= complaint.user.email %></td>
+                                <td class="text-left p-1"><%= complaint.subject %></td>
+                                <td class="text-left p-1"><%= complaint.message %></td>
+                                <td class="text-center p-1">
+                                    <% if (complaint.status && complaint.status == 1) {%>
+                                        <span class="bg-green-600 text-white py-[2px] px-5 rounded-2xl">Read</span>
+                                    <% } else { %>
+                                        <span class="bg-red-600 text-white py-[2px] px-5 rounded-2xl">Unread</span>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% } %>
+                        <tr class="border-b-[2px] border-gray-200">
+                            <td class="text-center p-1" colspan="5"><a href="/user/complaints" class="text-blue-500 hover:underline">View all complaints</a></td>
+                        </tr>
+                    <% } else { %>
+                        <tr class="border-b-[2px] border-gray-200">
+                            <td class="text-center p-1" colspan="5">No complaints to show</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="px-5 mt-10">
+            <p class="text-gray-700">Recent payments</p>
+            <hr class="bg-black h-[2px] mb-5"/>
+            <table class="w-full table-auto">
+                <thead class="bg-gray-300 border-gray-300 border-2">
+                    <th class="text-left p-1">Payslip number</th>
+                    <th class="text-left p-1">Student</th>
+                    <th class="text-left p-1">Student registration</th>
+                    <th class="text-center p-1">Payslip number</th>
+                    <th class="text-center p-1">Payment date</th>
+                    <th class="text-center p-1">Payment amount</th>
+                </thead>
+                <tbody>
+                    <% if (recentPayments.length > 0){ %>
+                        <% for (const pay of recentPayments){ %>
+                            <tr class="border-b-[2px] border-gray-200">
+                                <td class="text-left p-1" ><%= pay.name %></td>
+                                <td class="text-left p-1" ><%= pay.student.full_name %></td>
+                                <td class="text-left p-1" ><%= pay.student.registration_number %></td>
+                                <td class="text-center p-1" ><%= pay.payslipNumber %></td>                            
+                                <td class="text-center p-1" ><%= pay.paymentDate %></td>
+                                <td class="text-center p-1" ><%= pay.amount %></td>
+                            </tr>
+                        <% } %>
+                        <tr class="border-b-[2px] border-gray-200">
+                            <td colspan="6" class="text-center p-1"><a href="/user/payments" class="text-blue-500 hover:underline">View all payments</a></td>
+                        </tr>
+                    <% } else { %>
+                        <tr class="border-b-[2px] border-gray-200">
+                            <td colspan="6" class="text-center p-1">No payments to show</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </div>
     <%- include('../components/bottomIncludes.ejs') %>
 </body>
