@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const complaints = require('../models/complaints');
 const users = require('../models/users');
+const students = require('../models/students');
 
 module.exports.index = async (req,res)=>{
     const unreadComplaints = await complaints.findAll({
@@ -46,8 +47,28 @@ module.exports.create = (req,res)=>{
     
 }
 
-module.exports.getReadView = (req,res)=>{
-    res.render('user/forms/complaints', {user : req.user});
+module.exports.getReadView = async (req,res)=>{
+    const reqId = req.params.id;
+
+    const complain = await complaints.findOne({
+        where : {
+            id : reqId
+        },
+        include : [
+            {
+                model : users,
+                as : 'user'
+            }
+        ]
+    });
+
+    const student = await students.findOne({
+        where : {
+            userAccountId : complain.user.id
+        }
+    });
+
+    res.render('user/forms/complaints', {user : req.user, complain : complain, student : student});
 }
 
 module.exports.update = async (req,res)=>{
