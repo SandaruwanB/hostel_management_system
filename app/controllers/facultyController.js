@@ -46,3 +46,24 @@ module.exports.getUpdateView = async (req, res)=>{
 
     res.render('user/forms/faculty', {faculty : selectedFaculty});
 }
+
+module.exports.update = async (req,res)=>{
+    const reqId = req.params.id;
+    const { name, location, hodName, hodContact, hodAddress} = req.body;
+    
+    await faculties.findOne({
+        where : {
+            id : reqId
+        }
+    }).then( async (faculty)=>{
+        faculty.update({
+            name : name,
+            location : location,
+            hod_name : hodName,
+            hod_cantact : hodContact,
+            hod_address : hodAddress
+        }).then(()=>{
+            res.json({result : "success"});
+        });
+    });
+}

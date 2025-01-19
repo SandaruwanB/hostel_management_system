@@ -133,6 +133,42 @@ $('#createFaculty').click(function (e) {
     }
 });
 
+// update faculty
+$('#updateFaculty').click(function (e) { 
+    e.preventDefault();
+
+    const id = $('#updateFaculty').val();
+    const name = $('#name').val();
+    const location = $('#location').val();
+    const hodName = $('#hod_name').val();
+    const hodContact = $('#hod_cantact').val();
+    const hodAddress = $('#hod_address').val();
+    
+    if (name && location && hodName && hodContact && hodAddress){
+        $.ajax({
+            type: "put",
+            url: `/user/faculty/${id}`,
+            data: {
+                "name" : name,
+                "location" : location,
+                "hodName" : hodName,
+                "hodContact" : hodContact,
+                "hodAddress" : hodAddress
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    showAlert("Successfully updated", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
 
 // MAINTAINERS
 // create maintainer

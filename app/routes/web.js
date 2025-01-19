@@ -42,6 +42,7 @@ route.get('/user/faculty', authCheck, facultyController.index);
 route.get('/user/faculty/add', authCheck, facultyController.getCreateView);
 route.get('/user/faculty/:id', authCheck, facultyController.getUpdateView);
 route.post('/user/faculty/add', authCheck, facultyController.create);
+route.put('/user/faculty/:id', authCheck, facultyController.update);
 
 route.get('/user/account/manage', authCheck, profileController.managerView);
 route.post('/user/account/manage', authCheck, profileController.updateUserData);
