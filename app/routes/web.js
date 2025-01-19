@@ -25,6 +25,7 @@ route.get('/user/students', authCheck, studentsController.index);
 route.get('/user/students/add', authCheck, studentsController.getCreateView);
 route.get('/user/students/:id', authCheck, studentsController.getUpdateView);
 route.post('/user/students/add', authCheck, studentsController.create);
+route.put('/user/students/:id', authCheck, studentsController.update);
 
 route.get('/user/payments', authCheck, paymentsController.index);
 route.get('/user/payments/add', authCheck, paymentsController.getCreateView);

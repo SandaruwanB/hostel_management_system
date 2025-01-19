@@ -397,6 +397,55 @@ $("#createStudent").click(function (e) {
 });
 
 
+// update student
+$('#updateStudent').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#updateStudent').val();
+    const full_name = $('#full_name').val();
+    const registration_number = $('#registration_number').val();
+    const permanant_address = $('#permanant_address').val();
+    const temporary_address = $('#temporary_address').val();
+    const contact = $('#contact').val();
+    const email = $('#email').val();
+    const account = $('#account').val();
+    const faculty = $('#faculty').val();
+    const guardians_name = $('#guardians_name').val();
+    const guardians_contact = $('#guardians_contact').val();
+    const guardians_email = $('#guardians_email').val();
+
+    if (full_name && registration_number && contact && faculty && guardians_name && guardians_contact){
+        $.ajax({
+            type: "put",
+            url: `/user/students/${id}`,
+            data: {
+                "full_name" : full_name,
+                "registration_number" : registration_number,
+                "permanant_address" : permanant_address,
+                "temporary_address" : temporary_address,
+                "contact" : contact,
+                "email" : email,
+                "account" : account,
+                "faculty" : faculty,
+                "guardians_name" : guardians_name,
+                "guardians_contact" : guardians_contact,
+                "guardians_email" : guardians_email
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    showAlert("Successfully updated", "#0ee30e");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("You missed some required fields", "#ff1100");
+    }
+});
+
+
 // PAYMENT
 // create payment
 $('#createPayment').click(function (e) { 
