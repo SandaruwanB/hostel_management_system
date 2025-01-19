@@ -19,6 +19,7 @@ route.get('/user/users', authCheck, userController.index);
 route.get('/user/users/add', authCheck, userController.getCreateView);
 route.get('/user/users/:id', authCheck, userController.getEditView);
 route.post('/user/users/add', authCheck, userController.create);
+route.put('/user/users/:id', authCheck, userController.update);
 
 route.get('/user/students', authCheck, studentsController.index);
 route.get('/user/students/add', authCheck, studentsController.getCreateView);
