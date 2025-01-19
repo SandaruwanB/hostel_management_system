@@ -41,6 +41,7 @@ route.get('/user/maintainers/add', authCheck, maintainersController.getCreateVie
 route.get('/user/maintainers/:id', authCheck, maintainersController.getUpdateView);
 route.post('/user/maintainers/add', authCheck, maintainersController.create);
 route.put('/user/maintainers/:id', authCheck, maintainersController.update);
+route.delete('/user/maintainers/:id', authCheck, maintainersController.delete);
 
 route.get('/user/complaints', authCheck, complaintsController.index);
 route.get('/user/complaints/:id', authCheck, complaintsController.getReadView);

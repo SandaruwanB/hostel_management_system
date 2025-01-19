@@ -354,6 +354,25 @@ $('#updateMaintainer').click(function (e) {
 });
 
 
+// remove maintainer
+$('#deleteMaintainer').click(function (e) { 
+    e.preventDefault();
+    
+    const id =  $('#deleteMaintainer').val();
+
+    $.ajax({
+        type: "delete",
+        url: `/user/maintainers/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/maintainers");
+            }
+        }
+    });
+});
+
 // STUDENT
 // create student
 $("#createStudent").click(function (e) { 
