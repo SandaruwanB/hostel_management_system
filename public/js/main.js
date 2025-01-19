@@ -547,6 +547,21 @@ function markAsRead(id){
     });
 }
 
+function markAndNavigate(id){
+    $.ajax({
+        type: "put",
+        url: `/user/complaints/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace(`/user/complaints/${id}`);
+            } else {
+                showAlert("Err. happend please try again", "#ff1100");
+            }
+        }
+    });
+}
 
 function showAlert(error, color){
     Toastify({

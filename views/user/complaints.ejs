@@ -34,10 +34,10 @@
                     <% } else { %>
                         <% for (const unreadComplaint of unreadComplaints){%>
                             <tr class="bg-gray-300 hover:bg-gray-100 cursor-pointer">
-                                <td class="text-left p-2" onclick="window.location.replace('/user/complaints/<%= unreadComplaint.id %>')"><%= unreadComplaint.user.userName %></td>
-                                <td class="text-left p-2" onclick="window.location.replace('/user/complaints/<%= unreadComplaint.id %>')"><%= unreadComplaint.user.email %></td>
-                                <td class="text-left p-2" onclick="window.location.replace('/user/complaints/<%= unreadComplaint.id %>')"><%= unreadComplaint.subject %></td>
-                                <td class="text-left p-2" onclick="window.location.replace('/user/complaints/<%= unreadComplaint.id %>')"><%= unreadComplaint.message %></td>
+                                <td class="text-left p-2" onclick="markAndNavigate('<%= unreadComplaint.id %>')"><%= unreadComplaint.user.userName %></td>
+                                <td class="text-left p-2" onclick="markAndNavigate('<%= unreadComplaint.id %>')"><%= unreadComplaint.user.email %></td>
+                                <td class="text-left p-2" onclick="markAndNavigate('<%= unreadComplaint.id %>')"><%= unreadComplaint.subject %></td>
+                                <td class="text-left p-2" onclick="markAndNavigate('<%= unreadComplaint.id %>')"><%= unreadComplaint.message %></td>
                                 <td class="text-right p-2"> 
                                     <button class="ml-2 text-blue-400 hover:text-blue-600" title="Mark as read" onclick="markAsRead('<%= unreadComplaint.id %>')" id="markAsRead">
                                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
