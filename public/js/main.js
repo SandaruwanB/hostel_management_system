@@ -518,6 +518,25 @@ $('#createStudentInOut').click(function (e) {
     }
 });
 
+
+// remove student
+$('#deleteStudent').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#deleteStudent').val();
+    $.ajax({
+        type: "delete",
+        url: `/user/students/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/students");
+            }
+        }
+    });
+});
+
 // PAYMENT
 // create payment
 $('#createPayment').click(function (e) { 

@@ -83,6 +83,10 @@ function removePayment(id){
     $('#removeModel').removeClass('hidden');
     $('#deletePayment').val(id);
 }
+function removeStudent(id) {
+    $('#removeModel').removeClass('hidden');
+    $('#deleteStudent').val(id)
+}
 
 function cancelDelete(){
     $('#removeModel').addClass('hidden');
