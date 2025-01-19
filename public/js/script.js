@@ -75,7 +75,28 @@ function removeUser(id, model){
     $('#removeModel').removeClass('hidden');
     $('#delete').val(id);
 }
+function removeComplain(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deleteComplain').val(id);
+}
+function removePayment(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deletePayment').val(id);
+}
+function removeStudent(id) {
+    $('#removeModel').removeClass('hidden');
+    $('#deleteStudent').val(id)
+}
+function removeMaintainer(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deleteMaintainer').val(id)
+}
+function removeFaculty(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deleteFaculty').val(id) 
+}
 
 function cancelDelete(){
     $('#removeModel').addClass('hidden');
 }
+

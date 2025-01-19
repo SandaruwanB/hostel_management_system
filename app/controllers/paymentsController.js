@@ -83,6 +83,31 @@ module.exports.getUpdateView = async (req,res)=>{
     res.render('user/forms/payments', {payment : paymentDetails, students : [student]});
 }
 
+module.exports.delete = async (req,res)=>{
+    const reqId = req.params.id;
+
+    await payments.findOne({
+        where : {
+            id : reqId
+        }
+    }).then(async (payment)=>{
+        await students.findOne({
+            where : {
+                id : payment.studentId
+            }
+        }).then(async (student)=>{
+            const stuValue = parseFloat(student.total_paid) - parseFloat(payment.amount);
+            await student.update({
+                total_paid : stuValue
+            }).then(async ()=>{
+                payment.destroy().then(()=>{
+                    res.json({result : "success"});
+                });
+            });
+        });
+    });
+}
+
 
 
 const getSlipCode = (lastName) => {
@@ -90,3 +115,4 @@ const getSlipCode = (lastName) => {
     const value = parseInt(remStr) + 1 || 1;
     return `PAY${String(value).padStart(4, "0")}`;
 };
+

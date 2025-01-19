@@ -254,6 +254,25 @@ $('#updateFaculty').click(function (e) {
     }
 });
 
+// remove faculty
+$('#deleteFaculty').click(function (e) { 
+    e.preventDefault();
+    
+    const id =  $('#deleteFaculty').val();
+
+    $.ajax({
+        type: "delete",
+        url: `/user/faculty/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/faculty");
+            }
+        }
+    });
+});
+
 
 // MAINTAINERS
 // create maintainer
@@ -353,6 +372,25 @@ $('#updateMaintainer').click(function (e) {
     }
 });
 
+
+// remove maintainer
+$('#deleteMaintainer').click(function (e) { 
+    e.preventDefault();
+    
+    const id =  $('#deleteMaintainer').val();
+
+    $.ajax({
+        type: "delete",
+        url: `/user/maintainers/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/maintainers");
+            }
+        }
+    });
+});
 
 // STUDENT
 // create student
@@ -518,6 +556,25 @@ $('#createStudentInOut').click(function (e) {
     }
 });
 
+
+// remove student
+$('#deleteStudent').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#deleteStudent').val();
+    $.ajax({
+        type: "delete",
+        url: `/user/students/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/students");
+            }
+        }
+    });
+});
+
 // PAYMENT
 // create payment
 $('#createPayment').click(function (e) { 
@@ -561,6 +618,25 @@ $('#createPayment').click(function (e) {
     } else {
         showAlert("You missed some required fields", "#ff1100");
     }
+});
+
+// remove payment
+$('#deletePayment').click(function (e) { 
+    e.preventDefault();
+    
+    const id =  $('#deletePayment').val();
+
+    $.ajax({
+        type: "delete",
+        url: `/user/payments/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/payments");
+            }
+        }
+    });
 });
 
 // USER ACCOUNT
@@ -634,6 +710,26 @@ function markAndNavigate(id){
         }
     });
 }
+
+// remove complaint
+$('#deleteComplain').click(function (e) { 
+    e.preventDefault();
+
+    const id = $('#deleteComplain').val();
+    
+    $.ajax({
+        type: "delete",
+        url: `/user/complaints/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/complaints");
+            }
+        }
+    });
+    
+});
 
 function showAlert(error, color){
     Toastify({

@@ -211,3 +211,15 @@ module.exports.markInOrOut = async (req, res)=>{
         });
     }
 }
+
+module.exports.delete = async (req, res)=>{
+    const reqId = req.params.id;
+
+    await students.destroy({
+        where : {
+            id : reqId
+        }
+    }).then(()=>{
+        res.json({result : "success"});
+    });
+}

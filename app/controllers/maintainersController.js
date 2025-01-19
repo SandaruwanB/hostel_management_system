@@ -91,3 +91,15 @@ module.exports.update = async (req,res)=>{
         }
     });
 }
+
+module.exports.delete = async (req,res)=>{
+    const reqId = req.params.id;
+
+    await maintainers.destroy({
+        where : {
+            id : reqId
+        }
+    }).then(()=>{
+        res.json({result : "success"});
+    });
+}
