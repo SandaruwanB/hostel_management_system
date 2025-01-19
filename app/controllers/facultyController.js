@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const faculties = require('../models/faculties');
 
 module.exports.index = async (req,res)=>{
@@ -51,19 +52,35 @@ module.exports.update = async (req,res)=>{
     const reqId = req.params.id;
     const { name, location, hodName, hodContact, hodAddress} = req.body;
     
-    await faculties.findOne({
+    await faculties.findAll({
         where : {
-            id : reqId
+            [Op.and] : [
+                {name : name},
+                {id : {[Op.ne] : reqId}}
+            ]
         }
-    }).then( async (faculty)=>{
-        faculty.update({
-            name : name,
-            location : location,
-            hod_name : hodName,
-            hod_cantact : hodContact,
-            hod_address : hodAddress
-        }).then(()=>{
-            res.json({result : "success"});
-        });
-    });
+    }).then(async (faculty)=>{
+        if (faculty.length > 0){
+            res.json({result : `Faculty ${name} already exits`});
+        }
+        else {
+            await faculties.findOne({
+                where : {
+                    id : reqId
+                }
+            }).then( async (faculty)=>{
+                faculty.update({
+                    name : name,
+                    location : location,
+                    hod_name : hodName,
+                    hod_cantact : hodContact,
+                    hod_address : hodAddress
+                }).then(()=>{
+                    res.json({result : "success"});
+                });
+            });
+        }
+    })
+
+    
 }
