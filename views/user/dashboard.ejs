@@ -21,7 +21,7 @@
                     <h1 class="text-md mt-1 text-white">Total Users</h1>
                 </div>
                 <div class="flex justify-center items-center col-span-2">
-                    <h2 class="text-3xl text-blue-950 font-semibold">10</h2>   
+                    <h2 class="text-3xl text-blue-950 font-semibold"><%= typeof usersCount !== 'undefined' && usersCount ? usersCount : 0 %></h2>   
                 </div> 
             </div>
             <div class="bg-[rgba(28,51,156,0.4)] border-2 border-[rgb(28,51,156)] rounded grid grid-cols-5">
@@ -32,7 +32,7 @@
                     <h1 class="text-md mt-1 text-white">Total Maintainers</h1>
                 </div>
                 <div class="flex justify-center items-center col-span-2">
-                    <h2 class="text-3xl text-blue-950 font-semibold">10</h2>   
+                    <h2 class="text-3xl text-blue-950 font-semibold"><%= typeof maintainersCount !== 'undefined' && maintainersCount ? maintainersCount : 0 %></h2>   
                 </div> 
             </div>
             <div class="bg-[rgba(28,51,156,0.4)] border-2 border-[rgb(28,51,156)] rounded grid grid-cols-5">
@@ -44,7 +44,7 @@
                     <h1 class="text-md text-white mt-1">Total Payments</h1>
                 </div>
                 <div class="flex justify-center items-center col-span-2">
-                    <h2 class="text-3xl text-blue-950 font-semibold">10</h2>   
+                    <h2 class="text-3xl text-blue-950 font-semibold"><%= typeof paid !== 'undefined' && paid ? paid : 0 %></h2>   
                 </div> 
             </div>
             <div class="bg-[rgba(28,51,156,0.4)] border-2 border-[rgb(28,51,156)] rounded grid grid-cols-5">
@@ -55,7 +55,7 @@
                     <h1 class="text-md text-white mt-1">Total Students</h1>
                 </div>
                 <div class="flex justify-center items-center col-span-2">
-                    <h2 class="text-3xl text-blue-950 font-semibold">10</h2>   
+                    <h2 class="text-3xl text-blue-950 font-semibold"><%= typeof studentCount !== 'undefined' && studentCount ? studentCount : 0 %></h2>   
                 </div> 
             </div>
             <div class="bg-[rgba(28,51,156,0.4)] border-2 border-[rgb(28,51,156)] rounded grid grid-cols-5">
@@ -67,7 +67,7 @@
                     <h1 class="text-md mt-1 text-white">Total Faculties</h1>
                 </div>
                 <div class="flex justify-center items-center col-span-2">
-                    <h2 class="text-3xl text-blue-950 font-semibold">10</h2>
+                    <h2 class="text-3xl text-blue-950 font-semibold"><%= typeof facultyCount !== 'undefined' && facultyCount ? facultyCount : 0 %></h2>
                 </div> 
             </div>
         </div>
