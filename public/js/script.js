@@ -61,3 +61,12 @@ $('#cancelStudentInOut').click(function (e) {
     e.preventDefault();
     $('#outInMarker').addClass('hidden');
 });
+
+function checkboxClicked(cb){
+    if(cb.checked){
+        $('#reasonField').removeClass('hidden');
+    } else {
+        $('#reason').val('');
+        $('#reasonField').addClass('hidden');
+    }
+}

@@ -446,6 +446,60 @@ $('#updateStudent').click(function (e) {
 });
 
 
+// student out or in
+$('#createStudentInOut').click(function (e) { 
+    e.preventDefault();
+
+    const student = $('#student').val();
+    const in_or_out = $('#inOrOut').val();
+    const reason = $('#reason').val();
+
+    if ($('#inOrOut').is(":checked")){
+        if (student && reason){
+            $.ajax({
+                type: "put",
+                url: "/user/students",
+                data: {
+                    'student' : student,
+                    'is_out' : true,
+                    'reason' : reason
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        window.location.replace("/user/students");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("All fields are required", "#ff1100");
+        }
+    } else {
+        if (student){
+            $.ajax({
+                type: "put",
+                url: "/user/students",
+                data: {
+                    'student' : student,
+                    'is_out' : false,
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        window.location.replace("/user/students");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("Please choose student", "#ff1100");
+        }
+    }
+});
+
 // PAYMENT
 // create payment
 $('#createPayment').click(function (e) { 

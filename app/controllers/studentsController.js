@@ -2,6 +2,7 @@ const students = require('../models/students');
 const users = require('../models/users');
 const faculties = require('../models/faculties');
 const roles = require('../models/roles');
+const outtime = require('../models/outtime');
 const { Op } = require('sequelize');
 
 module.exports.index = async (req,res)=>{
@@ -158,4 +159,55 @@ module.exports.update = async (req,res)=>{
             });
         }
     });
+}
+
+module.exports.markInOrOut = async (req, res)=>{
+    const { student, is_out, reason } = req.body;
+
+    if (is_out == 'true'){
+        await students.findOne({
+            where : {
+                id : student
+            }
+        }).then(async (existing)=>{
+            if (existing.status == 1){
+                await existing.update({
+                    status : false
+                }).then(async ()=>{
+                    await outtime.create({
+                        reason : reason,
+                        is_out : true,
+                        studentId : existing.id
+                    }).then(()=>{
+                        res.json({result : "success"});
+                    });
+                });
+            } else {
+                res.json({result : "This student already out from hostel"})
+            }
+        });
+    } else {
+        await students.findOne({
+            where : {
+                id : student
+            }
+        }).then(async (existing)=>{
+            if (existing.status == 1){
+                res.json({result : "This student already in the hostel"})
+            } else {
+                await existing.update({
+                    status : true
+                }).then(async ()=>{
+                    var currentdate = new Date(); 
+                    await outtime.create({
+                        reason : `Student in on ${currentdate}`,
+                        is_out : false,
+                        studentId : existing.id
+                    }).then(()=>{
+                        res.json({result : "success"});
+                    });
+                });
+            }
+        });
+    }
 }

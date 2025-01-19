@@ -76,13 +76,13 @@
                     </select>
                 </div>
                 <div class="mt-4 flex">
-                    <input type="checkbox" class="mr-2 ml-1"> <span>Is student out</span>
+                    <input type="checkbox" id="inOrOut" onclick="checkboxClicked(this)" class="mr-2 ml-1"> <span>Is student out</span>
                 </div>
-                <div class="mt-4">
+                <div id="reasonField" class="mt-4 hidden">
                     <textarea id="reason" rows="5" class="w-full border border-gray-950 rounded px-3 py-2 bg-transparent" placeholder="Reason"></textarea>
                 </div>
                 <div class="mt-4">
-                    <button class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Save</button>
+                    <button id="createStudentInOut" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Save</button>
                     <button id="cancelStudentInOut" class="bg-gray-800 px-7 py-2 rounded text-white cursor-pointer">Cancel</button>
                 </div>
             </div>
