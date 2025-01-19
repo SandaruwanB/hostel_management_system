@@ -75,7 +75,12 @@ function removeUser(id, model){
     $('#removeModel').removeClass('hidden');
     $('#delete').val(id);
 }
+function removeComplain(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deleteComplain').val(id);
+}
 
 function cancelDelete(){
     $('#removeModel').addClass('hidden');
 }
+

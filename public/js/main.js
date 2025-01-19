@@ -635,6 +635,26 @@ function markAndNavigate(id){
     });
 }
 
+// remove complaint
+$('#deleteComplain').click(function (e) { 
+    e.preventDefault();
+
+    const id = $('#deleteComplain').val();
+    
+    $.ajax({
+        type: "delete",
+        url: `/user/complaints/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/complaints");
+            }
+        }
+    });
+    
+});
+
 function showAlert(error, color){
     Toastify({
         text: `${error}`,

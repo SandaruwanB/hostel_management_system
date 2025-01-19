@@ -43,6 +43,7 @@ route.put('/user/maintainers/:id', authCheck, maintainersController.update);
 route.get('/user/complaints', authCheck, complaintsController.index);
 route.get('/user/complaints/:id', authCheck, complaintsController.getReadView);
 route.put('/user/complaints/:id', authCheck, complaintsController.update);
+route.delete('/user/complaints/:id', authCheck, complaintsController.delete);
 
 route.get('/user/faculty', authCheck, facultyController.index);
 route.get('/user/faculty/add', authCheck, facultyController.getCreateView);
