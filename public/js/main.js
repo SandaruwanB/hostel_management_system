@@ -157,6 +157,24 @@ $('#updateUserPassword').click(function (e) {
 });
 
 
+// remove user 
+$('#delete').click(function (e) { 
+    e.preventDefault();
+    const id = $('#delete').val();
+    
+    $.ajax({
+        type: "delete",
+        url: `/user/users/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/users");
+            }
+        }
+    });
+});
+
 // FACULTY 
 // create faculty
 

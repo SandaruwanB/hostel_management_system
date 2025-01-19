@@ -70,3 +70,12 @@ function checkboxClicked(cb){
         $('#reasonField').addClass('hidden');
     }
 }
+
+function removeUser(id, model){
+    $('#removeModel').removeClass('hidden');
+    $('#delete').val(id);
+}
+
+function cancelDelete(){
+    $('#removeModel').addClass('hidden');
+}
