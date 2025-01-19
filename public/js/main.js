@@ -254,6 +254,25 @@ $('#updateFaculty').click(function (e) {
     }
 });
 
+// remove faculty
+$('#deleteFaculty').click(function (e) { 
+    e.preventDefault();
+    
+    const id =  $('#deleteFaculty').val();
+
+    $.ajax({
+        type: "delete",
+        url: `/user/faculty/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/faculty");
+            }
+        }
+    });
+});
+
 
 // MAINTAINERS
 // create maintainer

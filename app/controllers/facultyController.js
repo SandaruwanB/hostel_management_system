@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op, Model } = require('sequelize');
 const faculties = require('../models/faculties');
 
 module.exports.index = async (req,res)=>{
@@ -83,4 +83,16 @@ module.exports.update = async (req,res)=>{
     })
 
     
+}
+
+module.exports.delete = async (req,res)=>{
+    const reqId = req.params.id;
+
+    await faculties.destroy({
+        where : {
+            id : reqId
+        }
+    }).then(()=>{
+        res.json({result : "success"});
+    });
 }

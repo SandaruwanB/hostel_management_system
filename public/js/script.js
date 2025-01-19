@@ -91,6 +91,10 @@ function removeMaintainer(id){
     $('#removeModel').removeClass('hidden');
     $('#deleteMaintainer').val(id)
 }
+function removeFaculty(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deleteFaculty').val(id) 
+}
 
 function cancelDelete(){
     $('#removeModel').addClass('hidden');
