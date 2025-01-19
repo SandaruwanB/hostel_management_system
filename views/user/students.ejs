@@ -13,6 +13,7 @@
         <div class="flex justify-between p-5 mt-7">
             <div>
                 <a href="/user/students/add" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Create</a>
+                <button id="studentHostelStatus" class="bg-blue-800 px-3 py-[5.3px] rounded text-white cursor-pointer ml-3">Mark student out or in</button>
             </div>
             <div>
                 <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
@@ -61,6 +62,30 @@
                     <% } %>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div id="outInMarker" class="hidden absolute top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.6)] flex justify-center items-center">
+        <div class="bg-white rounded p-5 w-[400px]">
+            <span class="text-xl font-bold">Mark student out or in</span>
+            <div class="w-full mt-5">
+                <div>
+                    <select id="student" class="w-full border border-gray-950 rounded px-3 py-2 bg-transparent">
+                        <% for (const student of students){ %>
+                            <option value="<%= student.id %>"><%= student.full_name %> | <%= student.registration_number %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="mt-4 flex">
+                    <input type="checkbox" class="mr-2 ml-1"> <span>Is student out</span>
+                </div>
+                <div class="mt-4">
+                    <textarea id="reason" rows="5" class="w-full border border-gray-950 rounded px-3 py-2 bg-transparent" placeholder="Reason"></textarea>
+                </div>
+                <div class="mt-4">
+                    <button class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Save</button>
+                    <button id="cancelStudentInOut" class="bg-gray-800 px-7 py-2 rounded text-white cursor-pointer">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
 

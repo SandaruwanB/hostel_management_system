@@ -51,3 +51,13 @@ function updateClock() {
 
 setInterval(updateClock, 1000);
 updateClock();
+
+$('#studentHostelStatus').click(function (e) { 
+    e.preventDefault();
+    $('#outInMarker').removeClass('hidden');
+});
+
+$('#cancelStudentInOut').click(function (e) { 
+    e.preventDefault();
+    $('#outInMarker').addClass('hidden');
+});
