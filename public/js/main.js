@@ -731,6 +731,27 @@ $('#deleteComplain').click(function (e) {
     
 });
 
+
+// ROOMS
+// remove room
+$('#deleteRoom').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#deleteRoom').val();
+    
+    $.ajax({
+        type: "delete",
+        url: `/user/rooms/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/rooms");
+            }
+        }
+    });
+});
+
 function showAlert(error, color){
     Toastify({
         text: `${error}`,
