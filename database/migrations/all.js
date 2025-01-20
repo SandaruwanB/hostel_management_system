@@ -3,6 +3,7 @@ const { sequalize } = require('../connection');
 require('../../app/models/roles');
 require('../../app/models/users');
 require('../../app/models/faculties');
+require('../../app/models/rooms');
 require('../../app/models/students');
 require('../../app/models/payments');
 require('../../app/models/complaints');
