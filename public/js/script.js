@@ -95,6 +95,10 @@ function removeFaculty(id){
     $('#removeModel').removeClass('hidden');
     $('#deleteFaculty').val(id) 
 }
+function removeRoom(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deleteRoom').val(id) 
+}
 
 function cancelDelete(){
     $('#removeModel').addClass('hidden');
