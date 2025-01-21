@@ -56,10 +56,17 @@ $('#studentHostelStatus').click(function (e) {
     e.preventDefault();
     $('#outInMarker').removeClass('hidden');
 });
-
+$('#roomCreatorButton').click(function (e) { 
+    e.preventDefault();
+    $('#roomCreator').removeClass('hidden');
+});
 $('#cancelStudentInOut').click(function (e) { 
     e.preventDefault();
     $('#outInMarker').addClass('hidden');
+});
+$('#cancelCreateRoom').click(function (e) { 
+    e.preventDefault();
+    $('#roomCreator').addClass('hidden');
 });
 
 function checkboxClicked(cb){

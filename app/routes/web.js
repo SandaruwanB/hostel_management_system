@@ -57,6 +57,7 @@ route.put('/user/faculty/:id', authCheck, facultyController.update);
 route.delete('/user/faculty/:id', authCheck, facultyController.delete);
 
 route.get('/user/rooms', authCheck, roomsController.index);
+route.post('/user/rooms', authCheck, roomsController.create);
 route.delete('/user/rooms/:id', authCheck, roomsController.delete);
 
 route.get('/user/account/manage', authCheck, profileController.managerView);

@@ -12,7 +12,7 @@
         <h1 class="text-2xl font-bold pl-5 pt-5">Rooms</h1>
         <div class="flex justify-between p-5 mt-7">
             <div>
-                <button class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Create</button>
+                <button id="roomCreatorButton" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Create</button>
             </div>
             <div>
                 <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
@@ -47,6 +47,25 @@
                     <% } %>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div id="roomCreator" class="hidden absolute top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.6)] flex justify-center items-center">
+        <div class="bg-white rounded p-5 w-[400px]">
+            <span class="text-xl font-bold">Create room</span>
+            <div class="w-full mt-5">
+                <div class="mt-4">
+                    <input type="text" id="roomNumber"  class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Room number"> 
+                    <label for="roomNumber">Room number <span class="text-red-400">*</span></label>
+                </div>
+                <div class="mt-4">
+                    <input type="number" id="roomBeds"  class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Beds count"> 
+                    <label for="roomBeds">Beds count <span class="text-red-400">*</span></label>
+                </div>
+                <div class="mt-4">
+                    <button id="createRoom" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Save</button>
+                    <button id="cancelCreateRoom" class="bg-gray-800 px-7 py-2 rounded text-white cursor-pointer">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
     <div id="removeModel" class="hidden absolute top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.6)] flex justify-center items-center">
