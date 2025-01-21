@@ -3,6 +3,7 @@ const users = require('../models/users');
 const faculties = require('../models/faculties');
 const roles = require('../models/roles');
 const outtime = require('../models/outtime');
+const rooms = require('../models/rooms');
 const { Op } = require('sequelize');
 
 module.exports.index = async (req,res)=>{
@@ -24,9 +25,10 @@ module.exports.getCreateView = async (req,res)=>{
             ['id', 'DESC']
         ]
     });
+    const userRooms = await rooms.findAll();
     const facultyList = await faculties.findAll();
 
-    res.render('user/forms/student/create', {faculties : facultyList, users : userAccounts});
+    res.render('user/forms/student/create', {faculties : facultyList, users : userAccounts, rooms : userRooms});
 }
 
 module.exports.create = async (req, res)=>{
@@ -85,10 +87,13 @@ module.exports.getUpdateView = async (req, res)=>{
             {
                 model : faculties,
                 as : 'faculty',
+            },
+            {
+                model : rooms,
+                as : 'room'
             }
         ]
     });
-    console.log(studentDetails);
     const userRole = await roles.findOne({
         where : {
             name : "student"
@@ -102,9 +107,10 @@ module.exports.getUpdateView = async (req, res)=>{
             ['id', 'DESC']
         ]
     });
+    const userRooms = await rooms.findAll();
     const facultyList = await faculties.findAll();
 
-    res.render('user/forms/student/edit', {faculties : facultyList, users : userAccounts, student : studentDetails});
+    res.render('user/forms/student/edit', {faculties : facultyList, users : userAccounts, student : studentDetails, rooms  : userRooms});
 }
 
 
