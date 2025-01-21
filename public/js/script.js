@@ -68,6 +68,17 @@ $('#cancelCreateRoom').click(function (e) {
     e.preventDefault();
     $('#roomCreator').addClass('hidden');
 });
+function updateRoom(id, room_name, beds){
+    $('#updateRoomNumber').val(room_name);
+    $('#updateRoomBeds').val(beds);
+    $('#updateRoom').val(id);
+
+    $('#roomUpdator').removeClass('hidden');
+}
+$('#cancelUpdateRoom').click(function (e) { 
+    e.preventDefault();
+    $('#roomUpdator').addClass('hidden');
+});
 
 function checkboxClicked(cb){
     if(cb.checked){
