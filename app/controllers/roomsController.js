@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
 const rooms = require('../models/rooms');
+const students = require('../models/students');
 
 module.exports.index = async (req,res)=>{
     const allRooms = await rooms.findAll();
@@ -68,5 +69,18 @@ module.exports.update = async (req,res)=>{
                 });
             });
         }
+    });
+}
+
+module.exports.getUsage = async (req,res)=>{
+    const reqId = req.params.id;
+
+    await students.findAll({
+        where : {
+            roomId : reqId
+        }
+    }).then((studentsDetails)=>{
+        console.log(students.length);
+        res.json({usage : studentsDetails.length});
     });
 }

@@ -73,6 +73,21 @@ function updateRoom(id, room_name, beds){
     $('#updateRoomBeds').val(beds);
     $('#updateRoom').val(id);
 
+    $.ajax({
+        type: "get",
+        url: `/user/room/usage/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.usage){
+                $('#uageValue').html(response.usage);
+            } else {
+                $('#uageValue').html("0");
+            }           
+        }
+    });
+
+    
     $('#roomUpdator').removeClass('hidden');
 }
 $('#cancelUpdateRoom').click(function (e) { 
