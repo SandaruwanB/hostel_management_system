@@ -56,10 +56,43 @@ $('#studentHostelStatus').click(function (e) {
     e.preventDefault();
     $('#outInMarker').removeClass('hidden');
 });
-
+$('#roomCreatorButton').click(function (e) { 
+    e.preventDefault();
+    $('#roomCreator').removeClass('hidden');
+});
 $('#cancelStudentInOut').click(function (e) { 
     e.preventDefault();
     $('#outInMarker').addClass('hidden');
+});
+$('#cancelCreateRoom').click(function (e) { 
+    e.preventDefault();
+    $('#roomCreator').addClass('hidden');
+});
+function updateRoom(id, room_name, beds){
+    $('#updateRoomNumber').val(room_name);
+    $('#updateRoomBeds').val(beds);
+    $('#updateRoom').val(id);
+
+    $.ajax({
+        type: "get",
+        url: `/user/room/usage/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.usage){
+                $('#uageValue').html(response.usage);
+            } else {
+                $('#uageValue').html("0");
+            }           
+        }
+    });
+
+    
+    $('#roomUpdator').removeClass('hidden');
+}
+$('#cancelUpdateRoom').click(function (e) { 
+    e.preventDefault();
+    $('#roomUpdator').addClass('hidden');
 });
 
 function checkboxClicked(cb){
@@ -94,6 +127,10 @@ function removeMaintainer(id){
 function removeFaculty(id){
     $('#removeModel').removeClass('hidden');
     $('#deleteFaculty').val(id) 
+}
+function removeRoom(id){
+    $('#removeModel').removeClass('hidden');
+    $('#deleteRoom').val(id) 
 }
 
 function cancelDelete(){

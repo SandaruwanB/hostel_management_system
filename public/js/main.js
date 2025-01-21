@@ -731,6 +731,86 @@ $('#deleteComplain').click(function (e) {
     
 });
 
+
+// ROOMS
+// create room
+$('#createRoom').click(function (e) { 
+    e.preventDefault();
+    
+    const roomNumber = $('#roomNumber').val();
+    const bedsCount = $('#roomBeds').val();
+
+    if (roomNumber && bedsCount){
+        $.ajax({
+            type: "post",
+            url: "/user/rooms",
+            data: {
+                "roomNumber" : roomNumber,
+                "bedsCount" : bedsCount
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    window.location.replace("/user/rooms");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("All feilds are required", "#ff1100");
+    }
+});
+
+// update room
+$('#updateRoom').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#updateRoom').val();
+    const roomName = $('#updateRoomNumber').val();
+    const bedsCount = $('#updateRoomBeds').val();
+
+    if (roomName && bedsCount){
+        $.ajax({
+            type: "put",
+            url: `/user/rooms/${id}`,
+            data: {
+                "roomNumber" : roomName,
+                "bedsCount" : bedsCount
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    window.location.replace("/user/rooms");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("All feilds are required", "#ff1100");
+    }
+});
+
+// remove room
+$('#deleteRoom').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#deleteRoom').val();
+    
+    $.ajax({
+        type: "delete",
+        url: `/user/rooms/${id}`,
+        data: [],
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/user/rooms");
+            }
+        }
+    });
+});
+
 function showAlert(error, color){
     Toastify({
         text: `${error}`,

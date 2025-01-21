@@ -7,6 +7,7 @@ const maintainersController = require('../controllers/maintainersController');
 const complaintsController = require('../controllers/complaintController');
 const facultyController = require('../controllers/facultyController');
 const profileController = require('../controllers/profileController');
+const roomsController = require('../controllers/roomsController');
 const { authCheck, isAuthenticated } = require('../middleware/authMiddleware');
 
 const route = require('express').Router();
@@ -54,6 +55,12 @@ route.get('/user/faculty/:id', authCheck, facultyController.getUpdateView);
 route.post('/user/faculty/add', authCheck, facultyController.create);
 route.put('/user/faculty/:id', authCheck, facultyController.update);
 route.delete('/user/faculty/:id', authCheck, facultyController.delete);
+
+route.get('/user/rooms', authCheck, roomsController.index);
+route.get('/user/room/usage/:id', authCheck, roomsController.getUsage);
+route.post('/user/rooms', authCheck, roomsController.create);
+route.put('/user/rooms/:id', authCheck, roomsController.update);
+route.delete('/user/rooms/:id', authCheck, roomsController.delete);
 
 route.get('/user/account/manage', authCheck, profileController.managerView);
 route.post('/user/account/manage', authCheck, profileController.updateUserData);

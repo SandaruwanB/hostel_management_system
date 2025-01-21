@@ -65,7 +65,7 @@
                         <label for="account">Associate account</label>
                     </div>
                 </div>
-                <p class="text-gray-700 mt-5">Faculty details</p>
+                <p class="text-gray-700 mt-5">Faculty & room details</p>
                 <hr class="bg-black h-[2px] mb-8"/>
                 <div class="grid grid-cols-1 mt-4 md:grid-cols-2 gap-5">
                     <div class="w-full">
@@ -76,6 +76,15 @@
                             <% } %>
                         </select>
                         <label for="faculty">Student faculty <span class="text-red-400">*</span></label>
+                    </div>
+                    <div class="w-full">
+                        <select id="faculty" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Student faculty">
+                            <option value="">Select room</option>
+                            <% for (const room of rooms) { %>
+                                <option value="<%= room.id %>"><%= room.room_number %></option>
+                            <% } %>
+                        </select>
+                        <label for="faculty">Room <span class="text-red-400">*</span></label>
                     </div>
                 </div>
                 <p class="text-gray-700 mt-5">Guardian details</p>
