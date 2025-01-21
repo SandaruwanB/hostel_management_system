@@ -762,6 +762,36 @@ $('#createRoom').click(function (e) {
     }
 });
 
+// update room
+$('#updateRoom').click(function (e) { 
+    e.preventDefault();
+    
+    const id = $('#updateRoom').val();
+    const roomName = $('#updateRoomNumber').val();
+    const bedsCount = $('#updateRoomBeds').val();
+
+    if (roomName && bedsCount){
+        $.ajax({
+            type: "put",
+            url: `/user/rooms/${id}`,
+            data: {
+                "roomNumber" : roomName,
+                "bedsCount" : bedsCount
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    window.location.replace("/user/rooms");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    } else {
+        showAlert("All feilds are required", "#ff1100");
+    }
+});
+
 // remove room
 $('#deleteRoom').click(function (e) { 
     e.preventDefault();

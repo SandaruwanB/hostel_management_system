@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const rooms = require('../models/rooms');
 
 module.exports.index = async (req,res)=>{
@@ -36,4 +37,36 @@ module.exports.delete = async (req,res)=>{
     }).then(()=>{
         res.json({result : "success"});
     })
+}
+
+
+module.exports.update = async (req,res)=>{
+    const reqId = req.params.id;
+    const { roomNumber, bedsCount } = req.body;
+
+    await rooms.findAll({
+        where : {
+            [Op.and] : [
+                {room_number : roomNumber},
+                {id : {[Op.ne] : reqId}}
+            ]
+        }
+    }).then(async (existing)=>{
+        if (existing.length > 0){
+            res.json({result : "This room already exists"});
+        } else {
+            await rooms.findOne({
+                where : {
+                    id : reqId
+                }
+            }).then(async (room)=>{
+                await room.update({
+                    room_number : roomNumber,
+                    beds_count : bedsCount
+                }).then(()=>{
+                    res.json({result : "success"});
+                });
+            });
+        }
+    });
 }
