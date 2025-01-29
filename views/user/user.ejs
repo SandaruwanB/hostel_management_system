@@ -18,16 +18,13 @@
             <form action="" class="w-full">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="w-full">
-                        <input type="text" value="<%= typeof user !== 'undefined' && user ? user.userName : '' %>" id="userName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="User name">
+                        <input type="text" value="<%= typeof user !== 'undefined' && user ? user.userName : '' %>" id="userName" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="User name" readonly>
                         <label for="userName">User name <span class="text-red-400">*</span></label>
                     </div>
                     <div class="w-full">
-                        <input type="email" value="<%= typeof user !== 'undefined' && user ? user.email : '' %>" id="email" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email">
-                        <label for="email">Email <span class="text-red-400">*</span></label>
+                        <input type="email" value="<%= typeof user !== 'undefined' && user ? user.email : '' %>" id="useremail" class="w-full border border-gray-950 rounded px-5 py-2 bg-transparent" placeholder="Email" readonly>
+                        <label for="useremail">Email <span class="text-red-400">*</span></label>
                     </div>
-                </div>
-                <div class="mt-7">                    
-                    <button id="updateAccountDetails" class="bg-blue-700 hover:bg-blue-800 px-5 py-2 rounded text-white">Update</button>
                 </div>
             </form>
             <p class="text-gray-700 mt-10">Password details</p>
