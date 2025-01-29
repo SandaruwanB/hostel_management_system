@@ -65,6 +65,9 @@ route.delete('/user/rooms/:id', authCheck, roomsController.delete);
 route.get('/user/account/manage', authCheck, profileController.managerView);
 route.post('/user/account/manage', authCheck, profileController.updateUserData);
 
+// student routes
+route.get('/student/dashboard', authCheck, dashboardController.getStudentDashboard);
+
 
 // auth routes
 route.get('/', isAuthenticated, (req, res)=>{

@@ -44,3 +44,7 @@ module.exports.index = async (req,res)=>{
 
     res.render('user/dashboard', {user : req.user, recentPayments : recentPayments, recentComplaints : recentComplaints, studentCount : studentDetails.length, usersCount : usersDetails.length, maintainersCount : maintainersDetails.length, facultyCount : facultyDetails.length, paid : totalPaid});
 }
+
+module.exports.getStudentDashboard = (req,res)=>{
+    res.render('student/dashboard', {user : req.user});
+}
