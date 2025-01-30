@@ -108,6 +108,10 @@ module.exports.delete = async (req,res)=>{
     });
 }
 
+module.exports.getStudentView = async (req,res)=>{
+    res.render('student/payments', {user : req.user})
+}
+
 
 
 const getSlipCode = (lastName) => {

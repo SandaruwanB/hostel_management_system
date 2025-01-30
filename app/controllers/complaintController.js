@@ -98,3 +98,7 @@ module.exports.delete = async (req,res)=>{
         res.json({result : "success"});
     })
 }
+
+module.exports.getStudentView = async (req,res)=>{
+    res.render('student/complains', {user : req.user});
+}

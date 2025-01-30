@@ -8,6 +8,7 @@ const complaintsController = require('../controllers/complaintController');
 const facultyController = require('../controllers/facultyController');
 const profileController = require('../controllers/profileController');
 const roomsController = require('../controllers/roomsController');
+const timelineController = require('../controllers/timelineController');
 const { authCheck, isAuthenticated } = require('../middleware/authMiddleware');
 
 const route = require('express').Router();
@@ -67,6 +68,14 @@ route.post('/user/account/manage', authCheck, profileController.updateUserData);
 
 // student routes
 route.get('/student/dashboard', authCheck, dashboardController.getStudentDashboard);
+
+route.get('/student/timeline', authCheck, timelineController.index);
+
+route.get('/student/payments', authCheck, paymentsController.getStudentView);
+
+route.get('/student/complains', authCheck, complaintsController.getStudentView);
+
+route.get('/student/account/manage', authCheck, profileController.getStudentView);
 
 
 // auth routes

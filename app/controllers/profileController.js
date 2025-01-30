@@ -33,3 +33,7 @@ module.exports.updateUserData = async (req, res)=>{
         res.json({result : "huuu"});
     }   
 }
+
+module.exports.getStudentView = async (req,res)=>{
+    res.render('student/profile', {user : req.user});
+}

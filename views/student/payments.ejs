@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Grid | My payments</title>
+    <%- include('../components/externalImports') %>
+</head>
+
+<body class="min-h-screen">
+    <%- include('./components/navbar.ejs') %>
+    <div class="ml-0 md:ml-[300px] p-3">
+        <h1 class="text-2xl font-bold pl-5 pt-5">My payment history</h1>
+        <div class="flex justify-between p-5 mt-7">
+            <div>
+            </div>
+            <div>
+                <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
+            </div>
+        </div>
+        <div class="px-5">
+            <table class="w-full table-auto">
+                <thead class="bg-gray-400">
+                    <th class="text-left p-2">Calling name</th>
+                    <th class="text-left p-2">Job role</th>
+                    <th class="text-center p-2">Contact</th>
+                    <th class="text-center p-2">Emergency contact</th>
+                    <th class="text-center p-2">Is working</th>
+                    <th></th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%- include('../components/bottomIncludes.ejs') %>
+</body>
+</html>
