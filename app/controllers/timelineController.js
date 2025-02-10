@@ -11,7 +11,10 @@ module.exports.index = async (req,res)=>{
     const outtimeData = await outtime.findAll({
         where : {
             studentId : student.id
-        }
+        },
+        order : [
+            ['id', 'DESC']
+        ]
     });
 
     res.render('student/timeline', {user : req.user, outtime : outtimeData});

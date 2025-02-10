@@ -695,6 +695,7 @@ function markAsRead(id){
     });
 }
 
+// mark complain readed
 function markAndNavigate(id){
     $.ajax({
         type: "put",
