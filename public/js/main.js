@@ -811,6 +811,38 @@ $('#deleteRoom').click(function (e) {
     });
 });
 
+$('#createComplainPost').click(function (e) { 
+    e.preventDefault();
+    
+    const subject = $('#subject').val();
+    const message = $('#message').val();
+
+    if (subject && message){
+        $.ajax({
+            type: "post",
+            url: "/student/complains",
+            data: {
+                subject : subject,
+                message : message
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    window.location.replace("/student/complains");
+                }
+            }
+        });
+    } else {
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
+
+
+
+
+
+
 function showAlert(error, color){
     Toastify({
         text: `${error}`,

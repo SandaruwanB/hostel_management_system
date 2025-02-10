@@ -74,6 +74,7 @@ route.get('/student/timeline', authCheck, timelineController.index);
 route.get('/student/payments', authCheck, paymentsController.getStudentView);
 
 route.get('/student/complains', authCheck, complaintsController.getStudentView);
+route.post('/student/complains', authCheck, complaintsController.createStudentComplain);
 
 route.get('/student/account/manage', authCheck, profileController.getStudentView);
 

@@ -14,6 +14,7 @@
         <h1 class="text-2xl font-bold pl-5 pt-5">My Timeline</h1>
         <div class="flex justify-between p-5 mt-7">
             <div>
+                <button class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Change my status</button>
             </div>
             <div>
                 <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
@@ -22,15 +23,24 @@
         <div class="px-5">
             <table class="w-full table-auto">
                 <thead class="bg-gray-400">
-                    <th class="text-left p-2">Calling name</th>
-                    <th class="text-left p-2">Job role</th>
-                    <th class="text-center p-2">Contact</th>
-                    <th class="text-center p-2">Emergency contact</th>
-                    <th class="text-center p-2">Is working</th>
-                    <th></th>
+                    <th class="text-left p-2">Reason</th>
+                    <th class="text-left p-2">Is in or out</th>
+                    <th class="text-left p-2">Date</th>
                 </thead>
                 <tbody>
-
+                    <% if (outtime.length > 0){ %>
+                        <% for (const time of outtime){ %>
+                            <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                <td class="text-left p-2"><%= time.reason %></td>
+                                <td class="text-left p-2"><span><%= time.is_out ? "Out" : "In" %></span></td>
+                                <td class="text-left p-2"><span><%= time.createdAt.toLocaleString('en-US', { hour12: false }) %></span></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-2">No history to show</td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>

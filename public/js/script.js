@@ -137,3 +137,10 @@ function cancelDelete(){
     $('#removeModel').addClass('hidden');
 }
 
+function postComplain(){
+    $('#complainPoster').removeClass('hidden');
+}
+function cancelPostComplain(){
+    $('#complainPoster').addClass('hidden');
+}
+

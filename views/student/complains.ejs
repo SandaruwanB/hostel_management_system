@@ -14,7 +14,7 @@
         <h1 class="text-2xl font-bold pl-5 pt-5">My Complains</h1>
         <div class="flex justify-between p-5 mt-7">
             <div>
-                
+                <button onclick="postComplain()" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Create complain</button>
             </div>
             <div>
                 <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
@@ -23,17 +23,41 @@
         <div class="px-5">
             <table class="w-full table-auto">
                 <thead class="bg-gray-400">
-                    <th class="text-left p-2">Calling name</th>
-                    <th class="text-left p-2">Job role</th>
-                    <th class="text-center p-2">Contact</th>
-                    <th class="text-center p-2">Emergency contact</th>
-                    <th class="text-center p-2">Is working</th>
-                    <th></th>
+                    <th class="text-left p-2">Subject</th>
+                    <th class="text-left p-2">Message</th>
                 </thead>
                 <tbody>
-
+                    <% if (complains.length > 0){ %>
+                        <% for (const complain of complains){ %>
+                            <tr class="bg-gray-300 hover:bg-gray-100 cursor-pointer">
+                                <td class="text-left p-2" ><%= complain.subject %></td>
+                                <td class="text-left p-2" ><%= complain.message %></td>
+                            </tr>  
+                        <% } %>                     
+                    <% } else { %>
+                        <tr>
+                            <td class="text-center p-2" colspan="2">No complaints posted yet</td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div id="complainPoster" class="hidden absolute top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.6)] flex justify-center items-center">
+        <div class="bg-white rounded p-5 w-[400px]">
+            <span class="text-xl font-bold">Post Complain</span>
+            <div class="w-full mt-5">
+                <div class="mt-4 flex"> 
+                    <input type="text" id="subject" class="w-full border border-gray-950 rounded px-3 py-2 bg-transparent" placeholder="Subject">
+                </div>
+                <div id="reasonField" class="mt-4">
+                    <textarea id="message" rows="5" class="w-full border border-gray-950 rounded px-3 py-2 bg-transparent" placeholder="Message"></textarea>
+                </div>
+                <div class="mt-4">
+                    <button id="createComplainPost" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Save</button>
+                    <button id="cancelComplainPost" onclick="cancelPostComplain()" class="bg-gray-800 px-7 py-2 rounded text-white cursor-pointer">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
 

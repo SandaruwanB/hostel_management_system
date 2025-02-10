@@ -109,7 +109,19 @@ module.exports.delete = async (req,res)=>{
 }
 
 module.exports.getStudentView = async (req,res)=>{
-    res.render('student/payments', {user : req.user})
+    const student = await students.findOne({
+        where : {
+            userAccountId : req.user.id
+        }
+    });
+
+    const paymentsData = await payments.findAll({
+        where : {
+            studentId : student.id
+        }
+    });
+
+    res.render('student/payments', {user : req.user, payments : paymentsData});
 }
 
 

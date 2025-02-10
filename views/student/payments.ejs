@@ -22,15 +22,26 @@
         <div class="px-5">
             <table class="w-full table-auto">
                 <thead class="bg-gray-400">
-                    <th class="text-left p-2">Calling name</th>
-                    <th class="text-left p-2">Job role</th>
-                    <th class="text-center p-2">Contact</th>
-                    <th class="text-center p-2">Emergency contact</th>
-                    <th class="text-center p-2">Is working</th>
-                    <th></th>
+                    <th class="text-left p-2">Code</th>
+                    <th class="text-center p-2">Payslip number</th>
+                    <th class="text-center p-2">Payment date</th>
+                    <th class="text-center p-2">Payment amount</th>
                 </thead>
                 <tbody>
-
+                    <% if (payments.length > 0){ %>
+                        <% for (const payment of payments){ %>
+                            <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                <td class="text-left p-2" ><%= payment.name %></td>
+                                <td class="text-center p-2" ><%= payment.payslipNumber %></td>                            
+                                <td class="text-center p-2" ><%= payment.paymentDate %></td>
+                                <td class="text-center p-2" ><%= payment.amount %></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-2">No payments to show</td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
