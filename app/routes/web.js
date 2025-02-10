@@ -70,6 +70,7 @@ route.post('/user/account/manage', authCheck, profileController.updateUserData);
 route.get('/student/dashboard', authCheck, dashboardController.getStudentDashboard);
 
 route.get('/student/timeline', authCheck, timelineController.index);
+route.post('/student/timeline', authCheck, timelineController.studentMarkInOut);
 
 route.get('/student/payments', authCheck, paymentsController.getStudentView);
 

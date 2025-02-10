@@ -144,3 +144,9 @@ function cancelPostComplain(){
     $('#complainPoster').addClass('hidden');
 }
 
+function checkMyStatus(){
+    $('#studentOutInMarker').removeClass('hidden');
+}
+function postCancelInOut(){
+    $('#studentOutInMarker').addClass('hidden');
+}

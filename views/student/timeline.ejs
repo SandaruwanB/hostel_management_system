@@ -14,7 +14,7 @@
         <h1 class="text-2xl font-bold pl-5 pt-5">My Timeline</h1>
         <div class="flex justify-between p-5 mt-7">
             <div>
-                <button class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Change my status</button>
+                <button onclick="checkMyStatus()" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Change my status</button>
             </div>
             <div>
                 <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
@@ -43,6 +43,23 @@
                     <% } %>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div id="studentOutInMarker" class="hidden absolute top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.6)] flex justify-center items-center">
+        <div class="bg-white rounded p-5 w-[400px]">
+            <span class="text-xl font-bold">Mark student out or in</span>
+            <div class="w-full mt-5">
+                <div class="mt-4 flex">
+                    <input type="checkbox" id="stuInorOut" onclick="checkboxClicked(this)" class="mr-2 ml-1"> <span>Is out</span>
+                </div>
+                <div id="reasonField" class="mt-4 hidden">
+                    <textarea id="reason" rows="5" class="w-full border border-gray-950 rounded px-3 py-2 bg-transparent" placeholder="Reason"></textarea>
+                </div>
+                <div class="mt-4">
+                    <button id="createPostIn" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Save</button>
+                    <button id="cancelPostOut" onclick="postCancelInOut()" class="bg-gray-800 px-7 py-2 rounded text-white cursor-pointer">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
 

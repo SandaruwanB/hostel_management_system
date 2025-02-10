@@ -535,7 +535,7 @@ $('#createStudentInOut').click(function (e) {
     } else {
         if (student){
             $.ajax({
-                type: "put",
+                type: "post",
                 url: "/user/students",
                 data: {
                     'student' : student,
@@ -811,6 +811,8 @@ $('#deleteRoom').click(function (e) {
     });
 });
 
+
+// student complaint create
 $('#createComplainPost').click(function (e) { 
     e.preventDefault();
     
@@ -834,6 +836,53 @@ $('#createComplainPost').click(function (e) {
         });
     } else {
         showAlert("All fields are required", "#ff1100");
+    }
+});
+
+// student chick in or out
+$('#createPostIn').click(function (e) { 
+    e.preventDefault();
+
+    const reason = $('#reason').val();
+
+    if ($('#stuInorOut').is(":checked")){
+        if (reason){
+            $.ajax({
+                type: "post",
+                url: "/student/timeline",
+                data: {
+                    'is_out' : true,
+                    'reason' : reason
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        window.location.replace("/student/timeline");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("Reason is required", "#ff1100");
+        }
+    }
+    else {
+        $.ajax({
+            type: "post",
+            url: "/student/timeline",
+            data: {
+                'is_out' : false,
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    window.location.replace("/student/timeline");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
     }
 });
 
