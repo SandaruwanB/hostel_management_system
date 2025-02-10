@@ -71,7 +71,58 @@
                 </div> 
             </div>
         </div>
+        <div class="px-5">
+            <p class="text-gray-700 mt-5">My recent activities</p>
+            <hr class="bg-black h-[2px] mb-5"/>
+            <table class="w-full table-auto">
+                <thead class="border-2 bg-gray-300 border-gray-300">
+                    <th class="text-left p-1">Reason</th>
+                    <th class="text-left p-1">In/Out status</th>
+                </thead>
+                <tbody>
+                    <% if (activities.length > 0){ %>
+                        <% for (const activity of activities){ %>
+                            <tr class="border-b-[2px] border-gray-200">
+                                <td class="text-left p-1"><%= activity.reason %></td>
+                                <td class="text-left p-1"><%= activity.is_out ? "Out" : "In" %></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr class="border-b-[2px] border-gray-200">
+                            <td class="text-center p-1">No data to show</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="px-5 mt-10">
+            <p class="text-gray-700 mt-5">My recent complains</p>
+            <hr class="bg-black h-[2px] mb-5"/>
+            <table class="w-full table-auto">
+                <thead class="border-2 bg-gray-300 border-gray-300">
+                    <th class="text-left p-1">Subject</th>
+                    <th class="text-left p-1">Message</th>
+                </thead>
+                <tbody>
+                    <% if (complains.length > 0){ %>
+                        <% for (const complain of complains){ %>
+                            <tr class="border-b-[2px] border-gray-200">
+                                <td class="text-center p-1"><%= complain.subject %></td>
+                                <td class="text-center p-1"><%= complain.message %></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr class="border-b-[2px] border-gray-200">
+                            <td colspan="2" class="text-center p-1">No complains posted</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
     <%- include('../components/bottomIncludes.ejs') %>
 </body>
 
