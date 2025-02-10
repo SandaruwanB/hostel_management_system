@@ -5,6 +5,7 @@ const users = require('../models/users');
 const payments = require('../models/payments');
 const complaints = require('../models/complaints');
 const outtime = require('../models/outtime');
+const rooms = require('../models/rooms');
 
 
 module.exports.index = async (req,res)=>{
@@ -47,11 +48,19 @@ module.exports.index = async (req,res)=>{
 }
 
 module.exports.getStudentDashboard = async (req,res)=>{
+    let paymentValue = 0;
+
 
     const studentAcc = await students.findOne({
         where : {
             userAccountId : req.user.id
-        }
+        },
+        include : [
+            {
+                model : rooms,
+                as : 'room'
+            }
+        ]
     });
 
     const complainData = await complaints.findAll({
@@ -74,5 +83,14 @@ module.exports.getStudentDashboard = async (req,res)=>{
         limit : 5
     });
 
-    res.render('student/dashboard', {user : req.user, complains : complainData, activities : activities});
+    const paymentsTotal = await payments.findAll({
+        where : {
+            studentId : studentAcc.id
+        }
+    });
+    paymentsTotal.map((payment, index)=>{
+        paymentValue += payment.amount;
+    });
+
+    res.render('student/dashboard', {user : req.user, complains : complainData, activities : activities, paidAmount : paymentValue, room : studentAcc.room.room_number, status : studentAcc.status ? "In" : "Out"});
 }
