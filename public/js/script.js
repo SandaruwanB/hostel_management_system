@@ -150,3 +150,6 @@ function checkMyStatus(){
 function postCancelInOut(){
     $('#studentOutInMarker').addClass('hidden');
 }
+
+
+

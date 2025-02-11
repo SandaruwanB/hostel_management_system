@@ -27,6 +27,7 @@ route.delete('/user/users/:id', authCheck, userController.delete);
 route.get('/user/students', authCheck, studentsController.index);
 route.get('/user/students/add', authCheck, studentsController.getCreateView);
 route.get('/user/students/:id', authCheck, studentsController.getUpdateView);
+route.get('/user/students/:id/log', authCheck, studentsController.getStudentLog);
 route.post('/user/students/add', authCheck, studentsController.create);
 route.put('/user/students/:id', authCheck, studentsController.update);
 route.put('/user/students', authCheck, studentsController.markInOrOut);

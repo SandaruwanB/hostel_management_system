@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Grid | Users - <%= typeof student !== 'undefined' && student ? student.registration_number : '' %></title>
+    <%- include('../components/externalImports') %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Log report <%= student.registration_number %>", 14, 10);
+            doc.setFontSize(8);
+            doc.text("<%= student.full_name %>", 14, 16);
+
+            const table = document.querySelector("table");
+            const headers = [...table.querySelectorAll("thead th")].map(th => th.innerText);
+            const rows = [...table.querySelectorAll("tbody tr")].map(tr => 
+                [...tr.querySelectorAll("td")].map(td => td.innerText)
+            );
+
+            doc.autoTable({
+                head: [headers],
+                body: rows,
+                startY: 20,
+                theme: "grid",
+                styles: { fontSize: 10 }
+            });
+
+            doc.save("log-report <%= student.registration_number %>.pdf");
+        }
+    </script>
+</head>
+<body>
+    <div class="max-w-screen-xl mx-auto px-4 md:px-1">
+        <div class="mt-10 flex items-center relative">
+            <a href="/user/students/<%= student.id %>" class="absolute left-0">
+                <svg class="w-10 h-10 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+                </svg>                
+            </a>  
+            <h1 class="pl-16 inline text-xl font-bold text-gray-700">
+                <%= typeof student !== 'undefined' && student ? "Student " + student.registration_number : '' %>
+            </h1>    
+        </div>
+        <div class="mt-14">
+            <button onclick="exportToPDF()" class="bg-blue-700 px-4 py-1 text-white rounded-sm cursor-pointer hover:bg-blue-900">Export to pdf</button>
+            <div>
+                <p class="text-gray-700 mt-5">Student Log</p>
+                <hr class="bg-black h-[2px] mb-5"/>
+                <table class="w-full table-auto">
+                    <thead class="border-2 bg-gray-300 border-gray-300">
+                        <th class="text-left p-1">Date</th>
+                        <th class="text-left p-1">In/Out</th>
+                        <th class="text-left p-1">Reason</th>
+                    </thead>
+                    <tbody>
+                        <% if (log.length > 0){ %>
+                            <% for (const logger of log){ %>
+                                <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                    <td class="text-left p-2"><%= logger.createdAt.toLocaleString('en-US', { hour12: false }) %></td>
+                                    <td class="text-left p-2"><span><%= logger.is_out ? "Out" : "In" %></span></td>
+                                    <td class="text-left p-2"><%= logger.reason %></td>
+                                </tr>
+                            <% } %>
+                        <% } else { %>
+                            <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                <td colspan="3" class="text-center p-2"><span><%= logger.is_out ? "Out" : "In" %></span></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('../components/bottomIncludes.ejs') %>
+    
+</body>
+</html>
