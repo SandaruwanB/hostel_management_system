@@ -50,9 +50,9 @@
             </div>
             <div>
                 <% if (typeof status !== 'undefined' && status && status == "In"){ %>
-                    <button class="text-xl text-white font-semibold bg-red-600 px-5 py-2 rounded-md">Check out</button> 
+                    <button id="checkOut" class="text-xl text-white font-semibold bg-red-600 px-5 py-2 rounded-md">Check out</button> 
                 <% } else { %>
-                    <button class="text-xl text-white font-semibold bg-green-600 px-5 py-2 rounded-md">Check in</button>
+                    <button id="checkIn" class="text-xl text-white font-semibold bg-green-600 px-5 py-2 rounded-md">Check in</button>
                 <% } %>
             </div>
         </div>

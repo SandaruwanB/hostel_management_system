@@ -888,6 +888,45 @@ $('#createPostIn').click(function (e) {
 });
 
 
+$('#checkOut').click(function (e) { 
+    e.preventDefault();
+    $.ajax({
+        type: "post",
+        url: "/student/timeline",
+        data: {
+            'is_out' : true,
+            'reason' : "Emergency check out"
+        },
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/student/dashboard");
+            } else {
+                showAlert(response.result, "#ff1100");
+            }
+        }
+    });
+});
+
+$('#checkIn').click(function (e) { 
+    e.preventDefault();
+    $.ajax({
+        type: "post",
+        url: "/student/timeline",
+        data: {
+            'is_out' : false,
+        },
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/student/dashboard");
+            } else {
+                showAlert(response.result, "#ff1100");
+            }
+        }
+    });
+});
+
 
 
 
