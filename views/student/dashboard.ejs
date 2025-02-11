@@ -48,6 +48,13 @@
                     <h2 class="text-3xl text-blue-950 font-semibold"><%= typeof room !== 'undefined' && room ? room : "Not assigned" %></h2>
                 </div> 
             </div>
+            <div>
+                <% if (typeof status !== 'undefined' && status && status == "In"){ %>
+                    <button class="text-xl text-white font-semibold bg-red-600 px-5 py-2 rounded-md">Check out</button> 
+                <% } else { %>
+                    <button class="text-xl text-white font-semibold bg-green-600 px-5 py-2 rounded-md">Check in</button>
+                <% } %>
+            </div>
         </div>
         <div class="px-5">
             <p class="text-gray-700 mt-5">My recent activities</p>
