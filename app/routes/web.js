@@ -8,6 +8,7 @@ const complaintsController = require('../controllers/complaintController');
 const facultyController = require('../controllers/facultyController');
 const profileController = require('../controllers/profileController');
 const roomsController = require('../controllers/roomsController');
+const timelineController = require('../controllers/timelineController');
 const { authCheck, isAuthenticated } = require('../middleware/authMiddleware');
 
 const route = require('express').Router();
@@ -26,6 +27,7 @@ route.delete('/user/users/:id', authCheck, userController.delete);
 route.get('/user/students', authCheck, studentsController.index);
 route.get('/user/students/add', authCheck, studentsController.getCreateView);
 route.get('/user/students/:id', authCheck, studentsController.getUpdateView);
+route.get('/user/students/:id/log', authCheck, studentsController.getStudentLog);
 route.post('/user/students/add', authCheck, studentsController.create);
 route.put('/user/students/:id', authCheck, studentsController.update);
 route.put('/user/students', authCheck, studentsController.markInOrOut);
@@ -64,6 +66,19 @@ route.delete('/user/rooms/:id', authCheck, roomsController.delete);
 
 route.get('/user/account/manage', authCheck, profileController.managerView);
 route.post('/user/account/manage', authCheck, profileController.updateUserData);
+
+// student routes
+route.get('/student/dashboard', authCheck, dashboardController.getStudentDashboard);
+
+route.get('/student/timeline', authCheck, timelineController.index);
+route.post('/student/timeline', authCheck, timelineController.studentMarkInOut);
+
+route.get('/student/payments', authCheck, paymentsController.getStudentView);
+
+route.get('/student/complains', authCheck, complaintsController.getStudentView);
+route.post('/student/complains', authCheck, complaintsController.createStudentComplain);
+
+route.get('/student/account/manage', authCheck, profileController.getStudentView);
 
 
 // auth routes

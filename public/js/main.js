@@ -535,7 +535,7 @@ $('#createStudentInOut').click(function (e) {
     } else {
         if (student){
             $.ajax({
-                type: "put",
+                type: "post",
                 url: "/user/students",
                 data: {
                     'student' : student,
@@ -695,6 +695,7 @@ function markAsRead(id){
     });
 }
 
+// mark complain readed
 function markAndNavigate(id){
     $.ajax({
         type: "put",
@@ -810,6 +811,126 @@ $('#deleteRoom').click(function (e) {
         }
     });
 });
+
+
+// student complaint create
+$('#createComplainPost').click(function (e) { 
+    e.preventDefault();
+    
+    const subject = $('#subject').val();
+    const message = $('#message').val();
+
+    if (subject && message){
+        $.ajax({
+            type: "post",
+            url: "/student/complains",
+            data: {
+                subject : subject,
+                message : message
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    window.location.replace("/student/complains");
+                }
+            }
+        });
+    } else {
+        showAlert("All fields are required", "#ff1100");
+    }
+});
+
+// student chick in or out
+$('#createPostIn').click(function (e) { 
+    e.preventDefault();
+
+    const reason = $('#reason').val();
+
+    if ($('#stuInorOut').is(":checked")){
+        if (reason){
+            $.ajax({
+                type: "post",
+                url: "/student/timeline",
+                data: {
+                    'is_out' : true,
+                    'reason' : reason
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.result == "success"){
+                        window.location.replace("/student/timeline");
+                    } else {
+                        showAlert(response.result, "#ff1100");
+                    }
+                }
+            });
+        } else {
+            showAlert("Reason is required", "#ff1100");
+        }
+    }
+    else {
+        $.ajax({
+            type: "post",
+            url: "/student/timeline",
+            data: {
+                'is_out' : false,
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.result == "success"){
+                    window.location.replace("/student/timeline");
+                } else {
+                    showAlert(response.result, "#ff1100");
+                }
+            }
+        });
+    }
+});
+
+
+$('#checkOut').click(function (e) { 
+    e.preventDefault();
+    $.ajax({
+        type: "post",
+        url: "/student/timeline",
+        data: {
+            'is_out' : true,
+            'reason' : "Emergency check out"
+        },
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/student/dashboard");
+            } else {
+                showAlert(response.result, "#ff1100");
+            }
+        }
+    });
+});
+
+$('#checkIn').click(function (e) { 
+    e.preventDefault();
+    $.ajax({
+        type: "post",
+        url: "/student/timeline",
+        data: {
+            'is_out' : false,
+        },
+        dataType: "json",
+        success: function (response) {
+            if (response.result == "success"){
+                window.location.replace("/student/dashboard");
+            } else {
+                showAlert(response.result, "#ff1100");
+            }
+        }
+    });
+});
+
+
+
+
+
 
 function showAlert(error, color){
     Toastify({

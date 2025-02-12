@@ -20,7 +20,10 @@
         </div>
         <% if (typeof student !== 'undefined' && student ) { %>
             <div class="flex justify-center mt-5">
-                <div class="text-center bg-blue-100 border-[1px] border-blue-300 px-5 py-1">
+                <button  onclick="window.location.replace('/user/students/<%= student.id %>/log')" class="flex justify-center items-center cursor-pointer bg-blue-700 border-[1px] border-blue-300 px-5 py-1 rounded-md text-center text-white">
+                        View log
+                </button>
+                <div class="ml-5 text-center bg-blue-100 border-[1px] border-blue-300 px-5 py-1">
                     <span class="text-[1.1rem] text-blue-900"><%= typeof student !== 'undefined' && student && student.total_paid ? student.total_paid : 0 %></span>
                     <div class="block text-[.8rem]">
                         Total paid

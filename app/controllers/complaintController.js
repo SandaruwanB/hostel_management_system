@@ -98,3 +98,26 @@ module.exports.delete = async (req,res)=>{
         res.json({result : "success"});
     })
 }
+
+module.exports.getStudentView = async (req,res)=>{
+    const complainsSet = await complaints.findAll({
+        where : {
+            userId : req.user.id
+        }
+    });
+
+    res.render('student/complains', {user : req.user, complains : complainsSet});
+}
+
+module.exports.createStudentComplain = async (req,res)=>{
+    const {subject,message} = req.body;
+    
+    await complaints.create({
+        subject : subject,
+        message : message,
+        userId : req.user.id,
+        status : false
+    }).then(()=>{
+        res.json({result : "success"});
+    });
+}

@@ -229,3 +229,22 @@ module.exports.delete = async (req, res)=>{
         res.json({result : "success"});
     });
 }
+
+
+module.exports.getStudentLog = async (req,res)=>{
+    const {id} = req.params;
+
+    const student = await students.findOne({
+        where : {
+            id : id
+        }
+    });
+
+    const log = await outtime.findAll({
+        where : {
+            studentId : id
+        }
+    });
+
+    res.render('user/log', {student : student, log : log});
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Grid | My timeline</title>
+    <%- include('../components/externalImports') %>
+</head>
+
+<body class="min-h-screen">
+    <%- include('./components/navbar.ejs') %>
+    <div class="ml-0 md:ml-[300px] p-3">
+        <h1 class="text-2xl font-bold pl-5 pt-5">My Timeline</h1>
+        <div class="flex justify-between p-5 mt-7">
+            <div>
+                <button onclick="checkMyStatus()" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Change my status</button>
+            </div>
+            <div>
+                <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
+            </div>
+        </div>
+        <div class="px-5">
+            <table class="w-full table-auto">
+                <thead class="bg-gray-400">
+                    <th class="text-left p-2">Reason</th>
+                    <th class="text-left p-2">Is in or out</th>
+                    <th class="text-left p-2">Date</th>
+                </thead>
+                <tbody>
+                    <% if (outtime.length > 0){ %>
+                        <% for (const time of outtime){ %>
+                            <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                <td class="text-left p-2"><%= time.reason %></td>
+                                <td class="text-left p-2"><span><%= time.is_out ? "Out" : "In" %></span></td>
+                                <td class="text-left p-2"><span><%= time.createdAt.toLocaleString('en-US', { hour12: false }) %></span></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-2">No history to show</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="studentOutInMarker" class="hidden absolute top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.6)] flex justify-center items-center">
+        <div class="bg-white rounded p-5 w-[400px]">
+            <span class="text-xl font-bold">Mark student out or in</span>
+            <div class="w-full mt-5">
+                <div class="mt-4 flex">
+                    <input type="checkbox" id="stuInorOut" onclick="checkboxClicked(this)" class="mr-2 ml-1"> <span>Is out</span>
+                </div>
+                <div id="reasonField" class="mt-4 hidden">
+                    <textarea id="reason" rows="5" class="w-full border border-gray-950 rounded px-3 py-2 bg-transparent" placeholder="Reason"></textarea>
+                </div>
+                <div class="mt-4">
+                    <button id="createPostIn" class="bg-blue-800 px-7 py-2 rounded text-white cursor-pointer">Save</button>
+                    <button id="cancelPostOut" onclick="postCancelInOut()" class="bg-gray-800 px-7 py-2 rounded text-white cursor-pointer">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../components/bottomIncludes.ejs') %>
+</body>
+</html>

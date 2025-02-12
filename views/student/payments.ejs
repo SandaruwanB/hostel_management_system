@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Grid | My payments</title>
+    <%- include('../components/externalImports') %>
+</head>
+
+<body class="min-h-screen">
+    <%- include('./components/navbar.ejs') %>
+    <div class="ml-0 md:ml-[300px] p-3">
+        <h1 class="text-2xl font-bold pl-5 pt-5">My payment history</h1>
+        <div class="flex justify-between p-5 mt-7">
+            <div>
+            </div>
+            <div>
+                <input type="text" class="border bg-gray-200 focus:outline-none px-3 py-1 rounded" placeholder="Search">
+            </div>
+        </div>
+        <div class="px-5">
+            <table class="w-full table-auto">
+                <thead class="bg-gray-400">
+                    <th class="text-left p-2">Code</th>
+                    <th class="text-center p-2">Payslip number</th>
+                    <th class="text-center p-2">Payment date</th>
+                    <th class="text-center p-2">Payment amount</th>
+                </thead>
+                <tbody>
+                    <% if (payments.length > 0){ %>
+                        <% for (const payment of payments){ %>
+                            <tr class="bg-gray-100 hover:bg-gray-200 cursor-pointer">
+                                <td class="text-left p-2" ><%= payment.name %></td>
+                                <td class="text-center p-2" ><%= payment.payslipNumber %></td>                            
+                                <td class="text-center p-2" ><%= payment.paymentDate %></td>
+                                <td class="text-center p-2" ><%= payment.amount %></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-center p-2">No payments to show</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%- include('../components/bottomIncludes.ejs') %>
+</body>
+</html>
